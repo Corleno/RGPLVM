@@ -1,0 +1,15 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.2}{Related Work}{}% 2
+\BOOKMARK [1][-]{section.3}{Sparse Gaussian Process}{}% 3
+\BOOKMARK [1][-]{section.4}{Gaussian Process Latent Variable Model}{}% 4
+\BOOKMARK [1][-]{section.5}{Regularization for Sparse Latent Gaussian Process}{}% 5
+\BOOKMARK [1][-]{section.6}{Regularization Theory}{}% 6
+\BOOKMARK [1][-]{section.7}{Temporal Categorical Latent Gaussian Process}{}% 7
+\BOOKMARK [1][-]{section.8}{Experiments}{}% 8
+\BOOKMARK [1][-]{section.9}{Conclusion}{}% 9
+\BOOKMARK [1][-]{section.10}{Regularization for Inducing Inputs}{}% 10
+\BOOKMARK [2][-]{subsection.10.1}{Regularization using KL Divergence}{section.10}% 11
+\BOOKMARK [1][-]{section.11}{Regularization Bayesian Theory}{}% 12
+\BOOKMARK [2][-]{subsection.11.1}{Empirical Bayesian Model with a Prior of Inducing Inputs}{section.11}% 13
+\BOOKMARK [1][-]{section.12}{Relation between CLGP and Empirical Bayesian Model}{}% 14
+\BOOKMARK [1][-]{section.13}{Variational Inference}{}% 15

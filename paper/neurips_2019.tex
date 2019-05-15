@@ -1,0 +1,319 @@
+\documentclass{article}
+
+\usepackage{bm}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+% if you need to pass options to natbib, use, e.g.:
+\PassOptionsToPackage{numbers, compress}{natbib}
+% before loading neurips_2019
+
+% ready for submission
+% \usepackage{neurips_2019}
+
+% to compile a preprint version, e.g., for submission to arXiv, add add the
+% [preprint] option:
+\usepackage[preprint]{neurips_2019}
+
+% to compile a camera-ready version, add the [final] option, e.g.:
+%     \usepackage[final]{neurips_2019}
+
+% to avoid loading the natbib package, add option nonatbib:
+%     \usepackage[nonatbib]{neurips_2019}
+
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+
+\title{Regularization for Sparse Latent Gaussian Process}
+
+% The \author macro works with any number of authors. There are two commands
+% used to separate the names and addresses of multiple authors: \And and \AND.
+%
+% Using \And between authors leaves it to LaTeX to determine where to break the
+% lines. Using \AND forces a line break at that point. So, if LaTeX puts 3 of 4
+% authors names on the first line, and the last on the second line, try using
+% \AND instead of \And before the third author name.
+
+\author{%
+	Rui Meng\thanks{Use footnote for providing further information
+		about author (webpage, alternative address)---\emph{not} for acknowledging
+		funding agencies.} \\
+	Department of Statistics\\
+	University of California\\
+	Santa Cruz, CA 95060 \\
+	\texttt{rmeng1@ucsc.edu} \\
+	% examples of more authors
+	\And
+	Herbert Lee \\
+	Department of Statistics\\
+	University of California\\
+	Santa Cruz, CA 95060 \\
+	\texttt{herbie@ucsc.edu} \\
+    \And
+	Braden Soper \\
+	Lawrence Livermore National Laboratory \\
+	Livermore, CA \\
+	\texttt{soper3@llnl.gov} \\
+}
+
+\begin{document}
+	
+	\maketitle
+	
+\begin{abstract}
+	Gaussian Process Latent Variable Model (GPLVM) is a flexible unsupervised bayesian nonparametric modelling approach which has been applied to many learning tasks such as Facial Expression Recognition, Image Reconstruction, Human pose estimation. Due to poor scaling properties of exact inference methods on GPLVMs, approximation methods based on sparse Gaussian process (SGP) and stochastic variational inference (SVI) are necessary for inference on large data sets. One problem in SGP is that the distribution of inducing inputs may exhibit overdispersion which may lead to inefficient inference and poor model fit. In this paper, we first propose regularization approach for latent sparse Gaussian process in SVI, which balance the distribution of inducing inputs and latent inputs without the need to tune hyper-parameters. We justify the use of this regularization term by proving that performing variational inference (VI) on a GPLVM with this regularization term is equivalent to perform VI on a related empirical Bayes model with a prior on inducing inputs. Second, we extend categorical latent Gaussian process to model categorical time series and illustrate that our regularization is particularly important in this latent dynamic model with a synthetic data set. Finally, we apply our model to a real data set of stock indices and visualize the latent dynamics.
+\end{abstract}
+
+\section{Introduction}
+
+
+\section{Related Work}
+
+\section{Sparse Gaussian Process}
+	
+\section{Gaussian Process Latent Variable Model}
+
+\section{Regularization for Sparse Latent Gaussian Process}	
+
+\section{Regularization Theory}
+
+\section{Temporal Categorical Latent Gaussian Process}
+
+\section{Experiments}
+
+\section{Conclusion}
+
+
+
+
+
+
+Latent variables are introduced as unknown inputs into GPs by \cite{Lawrence_2003} using the Gaussian Process Latent Variable Model (GPLVM). It considers a Gaussian process mapping from a latent space to a data space. The embedding inputs are optimized by maximizing the Gaussian process likelihood with respect to the latent input $\bm X$. Mathematically, the data $\bm Y$ are modeled as $\bm Y \sim \mathrm{GP}(\bm X, C(\bm{\theta}))$ where $C$ is a covariance function and $\bm \theta$ are corresponding hyper-parameters. Then Titsias discusses the same model from a Bayesian perspective \citep{Titsias_2010}. It gives a robust Bayesian training algorithm, which automatically selects the effective dimensionalities through the usage of automatic relevance determination (ARD) kernels \citep{MacKay1996}. 
+
+Mathematically, let $Y \in \mathbb{R}^{N\times D}$ be the observed data where $N$ is the number of observations and $D$ the dimensionality of each data vector. Observations have corresponding latent variables $X \in \mathbb{R}^{N \times Q}$ where $Q$ is the dimensionality on latent space. Assume the independence across features, the GPLVM is 
+\begin{eqnarray}
+y_{nd}|f_{nd} & \sim & \mathcal{N}(y_{nd}|f_{nd}, \sigma^2 = \beta^{-1}) \nonumber \\
+f_{nd} & = & \mathcal{F}_d(\bm x_n) \nonumber \\
+\mathcal{F}_d & \stackrel{iid}{\sim} & \mathrm{GP}(0, C(\bm\theta)) \nonumber 
+\end{eqnarray}
+with normal prior of latent variables $X$, $
+p(X) = \prod_{n = 1}^{N}\mathcal{N}(\bm x_n|\bm 0, I_Q)$
+where $\bm x_n$ is the $n$th row of $X$. \cite{Titsias_2009, Titsias_2010} apply variational sparse GP formulation by introducing a separate set of $M$ inducing variable $\bm u_d \in \mathbb{R}^M$ for each dimension $d$ evaluated at a set of inducing input locations $Z\in\mathbb{R}^{M\times Q}$. Then \cite{Titsias_2010, Hensman_2013} propose the variational structure 
+\begin{eqnarray}
+	q(\bm f, \bm u, \bm X) & = & \prod_{d = 1}^D\left(p(\bm f_d| \bm u_d, X) q(\bm u_d)\right) q(\bm X)\,.
+\end{eqnarray}
+Then the evidence lower bound (ELBO) is 
+\begin{eqnarray}
+\mathrm{ELBO} & = & E_{q(\bm f, \bm u, \bm X)} \log\left(\frac{\left(\prod_{d = 1}^{D}p(\bm y_d|\bm f_d)p(\bm f_d| \bm u_d, X)p(\bm u_d)\right)p(X)}{\left(\prod_{d = 1}^Dp(\bm f_d| \bm u_d, X) q(\bm u_d)\right) q(X)}\right) \nonumber \\
+& = & E_{q(\bm f, \bm u, X)} \log\left(\frac{\left(\prod_{d = 1}^{D}p(\bm y_d|\bm f_d)p(\bm u_d)\right)p(X)}{\left(\prod_{d = 1}^D q(\bm u_d)\right) q(X)}\right) \nonumber \\
+& = & \sum_{d = 1}^{D}E_{q(\bm f, \bm u, X)}p(\bm y_d|\bm f_d) - \mathrm{KL}(q(\bm u)||p(\bm u)) - \mathrm{KL}(q(X)||p(X)) 
+\end{eqnarray}	
+
+\cite{Titsias_2010} marginalize the optimal variational distribution $q(\bm u)$ and then maximize the ELBO with respect to $q(X)$ and $Z$, while \cite{Hensman_2013} directly maximize the ELBO in terms of $q(\bm u)$, $q(X)$ and $Z$. The time complexity of the computation of ELBO is reduced from $O(M^2N)$ in \cite{Titsias_2010} to $O(M^3)$ in \cite{Hensman_2013}. Specifically, ELBO in \cite{Titsias_2010} is
+\begin{eqnarray}
+\mathrm{ELBO} & = & \sum_{d = 1}^{D} E_{q(X)}\log p(\bm y_d|X) - \mathrm{KL}(q(X)||p(X)) \nonumber \\
+& \geq & \left(\sum_{d = 1}^D\log\left(\frac{(\beta)^{\frac{N}{2}}|K_{MM}|^{\frac{1}{2}}}{(2\pi)^{\frac{N}{2}}|\beta\Psi_2 + K_{MM}|^{\frac{1}{2}}} e^{-\frac{1}{2}\bm y_d^TW\bm y_d} \right)\right) - \frac{D\beta\psi_0}{2} \nonumber \\
+& & + \frac{D\beta}{2}\mathrm{tr}(K^{-1}_{MM}\Psi_2)- \mathrm{KL}(q(X)||p(X)) \nonumber 
+\end{eqnarray}
+where $W = \beta I_N - \beta^2\Psi_1(\beta\Psi_2 + K_{MM})^{-1}\Psi_1^T$, $\psi_0 = \mathrm{tr}(\langle K_{NN} \rangle_{q(X)})$, $\Psi_1 = \langle K_{NM} \rangle_{q(X)}$ and $\Psi_2 = \langle K_{MN}K_{NM}\rangle_{q(X)}$. while ELBO in \cite{Hensman_2013} is
+\begin{eqnarray}
+\mathrm{ELBO} & = & \sum_{d = 1}^{D}E_{q}\log p(\bm y_d|\bm f_d) - \mathrm{KL}(q(\bm u)||p(\bm u)) - \mathrm{KL}(q(X)||p(X)) \nonumber \\
+& = & - \frac{\beta}{2}\left( \mathrm{tr}(Y^TY) - 2\mathrm{tr}(Y^T\Psi_1K_{MM}^{-1}\bm m) + \mathrm{tr}(\bm m^TK_{MM}^{-1}\Psi_2K_{MM}^{-1}\bm m) + \mathrm{tr}(K_{MM}^{-1}\Psi_2K_{MM}^{-1}S) \right) \nonumber \\
+& & -\frac{ND}{2}\log(2\pi\beta^{-1}) + \frac{D\beta}{2}\left(-\psi_0 + \mathrm{tr}(K_{MM}^{-1}\Psi_2)\right) - \mathrm{KL}(q(\bm u)||p(\bm u)) - \mathrm{KL}(q(X)||p(X)) \,, \nonumber
+\end{eqnarray}
+where $S = \sum_{d=1}^{D}S_d$. However, if the likelihood $y_{nd}|f{nd}$ is non-Gaussian, 
+	
+\section{Regularization for Inducing Inputs}
+This regularization approach is proposed for inducing inputs to address an over-fitting issue caused by embedding inputs. One common approach in the literature for inference is to maximize the evidence lower boundary (ELBO) of CLGP/TCLGP. We find it helpful to put a penalty term on the ELBO, which accounts for the dissimilarity between the distribution of inducing inputs and the distribution of embedding inputs, as described in the next section. Since a TCLGP can be treated as a CLGP with Gaussian processes priors on embedding inputs, we introduce the regularization approach based on a CLGP.
+
+As for a CLGP \citep{Gal_2015}, a general model is defined as
+\begin{eqnarray}
+y_{nd} & \sim & \mathrm{Cat}(\mathrm{Softmax}(\bm f_{nd}))\,, \nonumber \\
+f_{ndk} & = & \mathcal{F}_{dk}(\bm x_n) \,, \qquad u_{mdk} = \mathcal{F}_{dk}(\bm z_m) \nonumber \\
+\mathcal{F}_{dk}(\cdot) & \stackrel{iid}{\sim} & \mathrm{GP}(0, C(\bm{\theta}_d))\,.
+\label{CLGP}
+\end{eqnarray}
+
+The corresponding ELBO is a lower bound of the log likelihood of the model derived by Jensen inequality and shown as
+\begin{eqnarray}
+\log p(\bm Y) & = & \log\left(\int \frac{p(\bm Y, \bm F, \bm X, \bm U) }{q(\bm X, \bm U, \bm F)} q(\bm X, \bm U, \bm F) d \bm X\bm U\bm F\right) \nonumber \\
+& \geq & \int \log\left(\frac{p(\bm Y, \bm F, \bm X, \bm U) }{q(\bm X, \bm U, \bm F)}\right) q(\bm X, \bm U\, \bm F) d\bm X \bm U \bm F = \mathrm{ELBO}\,.
+\end{eqnarray}
+
+The modified ELBO (MELBO) is defined as 
+\begin{equation}
+\mathrm{MELBO} = \mathrm{ELBO} - \lambda \mathrm{R}\,
+\end{equation}
+where $\lambda$ is a regularization weight and $\mathrm{R}$ is a regularization term, as described in the next section.
+
+\subsection{Regularization using KL Divergence}
+The CLGP model introduces inducing inputs to simplify the computation in Gaussian processes and inducing inputs are optimized by maximizing the ELBO. However, for a low dimensional categorical dataset where the data size is significantly larger than the dimension size, there is a significant difference between the distribution of embedding inputs and the distribution of inducing inputs, as can be seen in Figure~\ref{LV}. This is because the prior of embedding inputs forces them to concentrate around $0$ while the inducing inputs cannot learn enough from maximizing the ELBO. From another aspect, because CLGP does not guarantee the local distribution preservation mentioned in \cite{Lawrence_2007_HGP}, it is difficult for the inducing inputs $\bm Z$ to cover the important locations. So $\bm Z$ provides useless information for Gaussian processes prediction. Hence, it is difficult to assign suitable positions for inducing inputs in Gaussian processes through the maximization of the ELBO. 
+
+We introduce a regularization term in the ELBO of CLGP to motivate similar distributions between inducing inputs and embedding inputs. Hence, it guides the assignment for both inducing inputs and embedding inputs. The regularization term is proposed as 
+\begin{equation}
+\mathrm{R} = \mathrm{KL}(\tilde{q}(\bm Z)||\tilde{q}(\bm X) \nonumber
+\end{equation} 
+where $\tilde{q}(\cdot)$ denotes a variational empirical distribution function . We utilize a Gaussian distribution class for the variational distribution $\tilde{q}$. Then distribution $\tilde{q}(\bm Z)$ and $\tilde{q}(\bm X)$ are naturally estimated using the sample mean and sample variance-covariance matrix as follows:
+\begin{eqnarray}
+\tilde{q}(\bm Z) & = & \mathcal{N}(\hat{\bm\mu}_Z, \hat{\Sigma}_Z)\,, \\
+\tilde{q}(\bm X) & = & \mathcal{N}(\hat{\bm\mu}_X, \hat{\Sigma}_X)\,,
+\end{eqnarray}
+where $\hat{\bm\mu}_Z = \bar{Z} = \frac{1}{M}\sum_{m=1}^{M}Z_m$, $\hat{\bm\Sigma}_Z = \frac{1}{M}\sum_{m=1}^{M}( Z_m-\bar{Z})^2$, $\hat{\bm\mu}_X = \bar{\bm m} = \frac{1}{N}\sum_{n=1}^{N}\bm m_{n\cdot}$ and  $\hat{\Sigma}_X = \frac{1}{N}\sum_{n=1}^{N}(\bm m_{n\cdot} - \bar{\bm m})^2$.
+
+So the MELBO is expressed as
+\begin{equation}
+\mathrm{MELBO} = \mathrm{ELBO} - \lambda\mathrm{KL}(\tilde{q}(\bm Z)||\tilde{q}(\bm X)\,,
+\end{equation}
+where $\lambda$ is a regularization weight. Usually, $\lambda$ is set to be equal to the number of inducing points. Under this setting, the MELBO can be treated equivalently as an empirical Bayesian approach with a prior on inducing inputs. The detail is further discussed in the next section.
+
+\section{Regularization Bayesian Theory} 
+This section discusses the underlying relationship between MELBO in the CLGP model and ELBO in an empirical Bayesian model. First, we display the empirical Baysian model with a prior for inducing inputs $\bm Z$. Then we illustrate that maximizing MELBO is equivalent to maximizing a lower bound of the empirical Bayesian model.
+\subsection{Empirical Bayesian Model with a Prior of Inducing Inputs}
+Since predictive accuracy in sparse Gaussian processes strongly depends on optimal locations of inducing inputs, we force the distributions of the inducing inputs and the embedding inputs to be on the same scale. Therefore, we put an empirical prior on inducing inputs $\bm Z$. For the ease of computation, we assume the prior to be a Gaussian distribution and utilize the sample mean and sample covariance matrix of the embedding inputs $\bm X$ as the mean and covariance matrix of this prior. Mathematically, it implies that
+\begin{eqnarray}
+\bm z_{m} & \sim & \mathcal{N}(\bm z_{m} | \hat{\bm \mu}_X, \hat{\Sigma}_X) \,, \\
+q(\bm z_{m}) & \sim & \mathcal{N}(\bm z_{m} | \bm \nu_{m}, \Upsilon_{m})\,,
+\end{eqnarray}
+for $m = 1, \ldots, M$, where the empirical prior depends on the variational distribution $q(\bm X)$. Moreover, the empirical distribution is a normal approximation of the distribution of the mean of the embedding inputs' variational distribution $\bm m$. In order to guarantee a finite variation on inducing inputs $\bm Z$, we put a constraint on the mean $\bm \upsilon$ such that $\hat{\Sigma}_{Z} = |\frac{\sum_{m = 1}^{M}(\bm \nu_m - \bar{\bm \nu})^2}{M}| < K$, where $\bar{\bm \nu} = \frac{\sum_{m = 1}^{M}\bm \nu_m}{M}$.
+
+Under this setting, the corresponding ELBO is 
+{\footnotesize
+	\begin{eqnarray}
+	\log p(\bm Y) & \geq & \ell_{eblo} = \int q(\bm Z)q(\bm X)q(\bm U)p(\bm F|\bm Z, \bm X, \bm U) \log\frac{p(\bm Z)p(\bm X)p(\bm U)p(\bm Y| \bm F)}{q(\bm Z)q(\bm X)q(\bm U)}d\bm Z\bm X\bm U\bm F \nonumber \\
+	& = &  -\mathrm{KL}(q(\bm Z)|| p(\bm Z)) - \mathrm{KL}(q(\bm X)|| p(\bm X)) - \mathrm{KL}(q(\bm U) ||p(\bm U )) \nonumber \\
+	& &+ \int q(\bm Z)q(\bm X) q(\bm U)p(\bm F|\bm Z, \bm X, \bm U)\log p(\bm Y|\bm F) d\bm Z\bm X\bm U\bm F \nonumber
+	\end{eqnarray}
+}
+
+Moreover, $\mathrm{KL}(q(\bm Z)|| p(\bm Z))$ can be rewritten as 
+{\footnotesize
+	\begin{eqnarray}
+	\mathrm{KL}(q(\bm Z)||p(\bm Z)) & = & \sum_{m = 1}^{M} \mathrm{KL}(q(\bm z_m)||p(\bm z_m)) \nonumber \\
+	& = &\sum_{m = 1}^{M}\frac{1}{2}\left[\log\frac{|\hat{\Sigma}_X|}{|\Upsilon_m|} - Q + \mathrm{tr}(\hat{\Sigma}_X^{-1}\Upsilon_m) + (\hat{\bm\mu}_X - \bm \nu_m)^T\hat{\Sigma}_X^{-1}(\hat{\bm\mu}_X - \bm \nu_m)\right] \nonumber\\
+	& &
+	\label{KL_Z}
+	\end{eqnarray}
+}
+
+\section{Relation between CLGP and Empirical Bayesian Model}
+Under the CLGP model (\ref{CLGP}), for the ease of notation, we rewrite $\bm z_m$ by $\bm \nu_m$ for all $m = 1, \ldots, M$. Then, we have
+\begin{eqnarray}
+\hat{\bm \mu}_Z & = & \frac{\sum_{m = 1}^{M}\bm \nu_m}{M} \nonumber \\
+\hat{\Sigma}_Z & = & \frac{\sum_{m = 1}^{M}(\bm \nu_m - \hat{\bm \mu}_Z)(\bm u_m - \hat{\bm \mu}_Z)^T}{M}\,. \nonumber
+\end{eqnarray}
+
+Then to show that maximizing the MELBO is equivalent to maximizing a lower boundary of $\log p(\bm Y)$ under the empirical Bayesian model, we introduce two lemmas and one theorem in appendix~\ref{sec: rt}. 
+
+Lemma 1 shows a lower bound of the empirical Bayesian model when choosing a specific distribution family of $q(\bm Z)$ and Lemma 2 shows the calculation for the regularization term in CLGP. Then based on Lemma 1 and Lemma 2, we prove that maximizing the MELBO in CLGP when $\lambda = M$ is equivalent to maximizing the lower bound of $\log p(\bm Y)$ in Lemma 1 under the empirical Bayesian model.
+
+
+
+\section{Variational Inference}
+
+The ELBO of the TCLGP model is expressed as 
+\begin{eqnarray}
+\log p(\bm Y) & \geq & -\mathrm{KL}(q(\bm X) || p(\bm X | \tilde{\bm T})) - \mathrm{KL}(q(\bm U) || p(\bm U)) \\ 
+& & +  \int q(\bm X) q(\bm  U) p(\bm F | \bm X, \bm U) \log\left(\sum_{n = 1}^{N}\sum_{d = 1}^{D}\sum_{t = 1}^{T} p(\bm y_{ndt} | \bm f_{ndt})\right)d\bm X \bm U \bm F\,, \nonumber
+\end{eqnarray}
+where $p(\bm X|\tilde{\bm T})$ is a product of densities of multivariate Gaussian distributions over all time series.
+
+The variational distributions of $\bm U$ and $\bm X$ are constructed using independent Gaussian distributions such that
+\begin{eqnarray}
+q(\bm U) & = & \prod_{d = 1}^{D}\prod_{k = 1}^{K}\mathcal{N}(\bm u_{dk}| \bm{\mu}_{dk}, \Sigma_d)\,, \nonumber \\
+q(\bm X) & = & \prod_{n = 1}^{N}\prod_{q = 1}^{Q}\prod_{t = 1}^{T} \mathcal{N}(x_{nqt}| m_{nqt}, s_{nqt}^2)\,. \nonumber
+\end{eqnarray}
+
+Both $q(\bm X)$ and $p(\bm X|\tilde{\bm T})$ have a multivariate Gaussian distribution. Their KL divergence has a closed-form expression such that:
+\begin{eqnarray}
+\mathrm{KL}(q(\bm X)||p(\bm X|\tilde{\bm T})) & = & \sum_{n = 1}^{N}\sum_{q = 1}^{Q}\mathrm{KL}\left(q(\bm x_{nq})||p(\bm x_{nq}|\tilde{\bm T}_n)\right) \nonumber 
+\end{eqnarray}
+where each $\mathrm{KL}\left(q(\bm x_{nq})||p(\bm x_{nq}|\tilde{\bm T}_n)\right)$ has a closed-form expression using the results of KL divergence of multivariate Gaussian distributions as follows.
+
+Assume the dimension size of a multivariate variable is $D$, and $p \sim \mathcal{N}(\bm \mu, \Sigma)$ and $q \sim \mathcal{N}(\tilde{\bm\mu}, \tilde{\Sigma})$. Then the KL divergence between $p$ and $q$ is
+\begin{eqnarray}
+\mathcal{KL}[p||q] & = & \frac{1}{2}\left(\log\frac{|\tilde{\Sigma}|}{|\Sigma|} - D + \mathrm{tr}(\tilde{\Sigma}^{-1}\Sigma) + (\tilde{\bm \mu} - \bm \mu)^T\tilde{\Sigma}^{-1}(\tilde{\bm \mu} - \bm \mu) \right)\,.
+\label{KL_MN}
+\end{eqnarray} 
+
+The same is for the KL divergence between $q(\bm U)$ and $p(\bm U)$ such that
+{\footnotesize
+	\begin{eqnarray}
+	\mathrm{KL}\left(q(\bm U)||p(\bm U)\right) & = & \sum_{d=1}^{D}\sum_{k = 1}^{K}\mathrm{KL}(q(\bm u_{dk})||p(\bm u_{dk})) \nonumber \\
+	& = & \sum_{d=1}^{D}\sum_{k = 1}^{K}\frac{1}{2}\left(\log\frac{|C(\bm Z;\bm\theta_d)|}{|\Sigma_d|} - m + \mathrm{tr}(C(\bm Z;\bm\theta_d)^{-1}\Sigma_d) + \bm\mu_{dk}^TC(\bm Z;\bm\theta_d)^{-1}\bm\mu_{dk}\right) \,. \nonumber
+	\end{eqnarray}
+}
+
+Here, $C(\bm Z; \bm \theta_d)$ denotes the covariance matrix under the $d$th Gaussian process with respect to inputs $\bm Z$ and $C(\bm Z, \bm Z^*; \bm \theta_d)$ denotes the covariance matrix under the $d$th Gaussian process with respect to inputs $\bm Z$ and $\bm Z^*$.
+
+In the machine learning literature, especially in the auto-encoder literature, $\mathrm{KL}(q(\bm X)|| p(\bm X))$ and $\mathrm{KL}(q(\bm U)|| p(\bm U))$ are called regularization terms. They are used to minimize the distance between the variational distributions and their prior distributions. $\int q(\bm X) q(\bm U)p(\bm F|\bm X, \bm U)\log p(\bm Y|\bm F) d\bm X\bm U\bm F$ is called the reconstruction term. It is used to describe the likelihood to reconstruct the observations. Therefore, maximizing the ELBO means maximizing the reconstruction term and at the same time minimizing the distance between the variational distributions and their prior distributions for $\bm X$ and $\bm U$.
+
+As for the reconstruction term, directly computing the expectation is intractable. Thus, the expectation term is approximated using a Monte Carlo integration method \citep{Gal_2015}. Mathematically, the integration is approximated as
+\begin{eqnarray}
+\int q(\bm X) q(\bm U)p(\bm F|\bm X, \bm U)\log p(\bm Y|\bm F) d\bm X\bm U\bm F & = & \frac{1}{S}\sum_{s = 1}^{S} \log p(\bm Y| \bm F^{(s)})
+\end{eqnarray}
+where $S$ denotes the number of samples in the Monte Carlo integration. $\bm F^{(s)} $ is sampled from $p(\bm F| \bm X^{(s)}, \bm U^{(s)})$ where both $\bm X^{(s)}$ and $\bm U^{(s)}$ are sampled from $q(\bm X)$ and $q(\bm U)$ respectively. Because $q(\bm X), q(\bm U)$, and $p(\bm F| \bm X, \bm U)$ are all Gaussian distributions, generating the sample $\bm F$ is tractable. 
+
+On the other hand, $p(\bm F | \bm X, \bm U) = \prod_{d = 1}^{D}\prod_{k = 1}^{K}p(\bm f_{dk}| \bm X, \bm u_{dk})$. It is still expensive to generate $\bm f_{dk}$ from $p(\bm f_{dk}| \bm X, \bm u_{dk})$ because it costs a computation time of $O(nm^2)$. \cite{Gal_2015} implicitly assumes that $\bm f_{dk}$ are independent conditional on inducing variables $\bm u_{dk}$ in training processes, which is the same as the assumption in the Fully Independent Training Conditional Approximation (FITC) \citep{Rasmussen_2005}. It means that
+\begin{eqnarray}
+p(\bm F | \bm X, \bm U) & = & \prod_{n= 1}^{N}\prod_{d = 1}^{D}\prod_{t = 1}^{T}\prod_{k = 1}^{K}p(f_{ndtk}| \bm x_{nt}, \bm u_{dk}) \nonumber \\
+& = & \prod_{n= 1}^{N}\prod_{d = 1}^{D}\prod_{t = 1}^{T}\prod_{k = 1}^{K}\mathcal{N}(f_{ndtk}| a_{ndtk}, b_{ndtk}^2) \,. 
+\label{f_decomposition}
+\end{eqnarray}
+where $a_{ntdk} = \bm v_{ndt}^T\Sigma_{Zd}^{-1}\bm\mu_{dk}$ and $b_{ntdk}^2 = \sigma_n^2 - \bm v_{ndt}^T\Sigma_{Zd}^{-1}\bm v_{ndt}$ and $\Sigma_{Zd} = C(\bm Z; \bm{\theta}_d), \bm v_{ndt} = C(\bm Z, \bm x_{nt}; \bm{\theta}_d), \sigma_n^2 = C(\bm x_{nt}, \bm{\theta}_d)$.
+
+A linear transformation trick \citep{Kingma_2013} is introduced for sampling to improve the inference efficiency. It re-parameterizes a random variables as a function of hyper-parameters and a random variable which does not depend on any hyper-parameter. Therefore, it is tractable to compute the derivative of the random variable with respect to its corresponding hyper-parameters. A general re-parameterization for multivariate normal distribution is discussed. That is involved in the computation of the ELBO. 
+
+For example, suppose a random variable $\bm x$ follows a multivariate Gaussian distribution $\bm x \sim \mathcal{N}(\bm{\mu}, \Sigma)$. Since the covariance matrix $\Sigma$ is positive definite, it can be decomposed as $\Sigma = LL^T$ where $L$ is a lower triangular matrix. Then $\bm x$ can be re-parameterized as $\bm x = \bm \mu + \bm L\bm \epsilon$, where $\epsilon \sim \mathcal{N}(\bm 0, \bm I)$. The corresponding derivatives are derived as 
+\begin{eqnarray}
+\frac{\partial x_i}{\partial \mu_j} & = & \begin{cases}
+1 & i = j \\
+0 & i \neq j
+\end{cases} \,, \nonumber \\
+\frac{\partial x_i}{\partial l_{jk}} & = & \begin{cases}
+\epsilon_k & i = j \\
+0 & i \neq j
+\end{cases} \qquad i \geq j\,.
+\end{eqnarray}
+
+Generally, if $\bm Y$ has missing data, we denote observable $\bm Y$ as $\tilde{\bm Y} = \{Y_{ndt}\}_{(n,d,t)\in\Theta}$ with corresponding latent variables $\tilde{\bm F} = \{f_{ndt}\}_{(n,d,t)\in\Theta}$ and we denote the corresponding embedding inputs as $\tilde{\bm X}$. The ELBO is expressed as  
+\begin{eqnarray}
+\log p(\tilde{\bm Y}) & \geq & -\mathrm{KL}(q(\tilde{\bm X}) || p(\tilde{\bm X} | \tilde{\bm T})) - \mathrm{KL}(q(\bm U) || p(\bm U)) \\ 
+& & +  \int q(\tilde{\bm X}) q(\bm  U) p(\tilde{\bm F} | \tilde{\bm X}, \bm U) \log\left(\sum_{(n,d,t)\in\Theta} p(\bm y_{ndt} | \bm f_{ndt})\right)d\tilde{\bm X} \bm U \tilde{\bm F}\,, \nonumber
+\end{eqnarray}
+
+Considering the regularization for inducing inputs, the MELBO is expressed as
+\begin{equation}
+\mathrm{MELBO} = \mathrm{ELBO} - \lambda KL(\tilde{q}(\bm Z)|| \tilde{q}(\bm X))\,,
+\end{equation}
+where $\lambda$ is a regularization weight. It is usually chosen as the number of inducing points.
+
+Sometimes hyper-parameters of a Gaussian process across time are difficult to learn through optimization. Putting priors on those parameters can get rid of this issue. For example, if the RFB kernel is used as $Cov(t_i, t_j) = \phi_0\exp(-\frac{|t_j - t_i|^2}{2\phi_1})$, then we can set $\phi_0 \sim \mathrm{Gamma}(2,1)$ and $\phi_1 \sim \mathrm{Gamma}(2,1)$ to guarantee that both scale-variance and scale-length parameters are reasonable in optimization.
+
+Generally, after introducing a variation distribution on $\bm\phi$ denoted as $q(\phi_{qj}), \forall q = 1, \ldots, Q, \quad j = 1, \ldots J$, where $J$ is the number of hyper-parameters in the Gaussian process, the ELBO is redefined as 
+\begin{eqnarray}
+\log p(\bm Y) & \geq & -\mathrm{KL}(q(\bm \phi)|| p(\bm \phi)) + \int q(\bm{\phi}) q(\bm X) \log\left(\frac{p(\bm X| \bm \phi, \bm t)}{q(\bm X)}\right)d\bm{\phi}\bm X \nonumber \\
+& & - \mathrm{KL}(q(\bm U) ||p(\bm U )) + \int q(\bm X) q(\bm U)p(\bm F|\bm X, \bm U)\log p(\bm Y| \bm F) d \bm X \bm U \bm F \,. \nonumber
+\end{eqnarray}
+
+Then we utilize the stochastic gradient descent (SGD) method to maximize the ELBO with respect to the hyper-parameters in the GPs and the variational parameters. The details of SGD are discussed as follows.
+
+Stochastic Gradient Descent is one class of optimization methods. Those methods are pretty popular in the deep learning literature because of their properties of cheap computation and scalability. Through learning an optimized learning rate with respect to gradients, Duchi proposed AdaGrad \citep{Duchi_2011}. Then AdaDelta \citep{Zeiler_2012} and RMSPROP \citep{Hilton_2012} are proposed to solve the aggressive learning rate issues. Then Adaptive Moment Estimation is proposed by \cite{Kingma_2014} which takes the momentum into consideration and has a great performance for a large dataset.
+
+In the context of TCLGP, we compare AdaGrad, AdaDelta, RMSPROP and Adam for synthetic datasets. AdaGrad has a significantly worse performance than others, and Adam is slightly better than AdaDelta and RMSPROP. Hence, we adopt Adam for all experiments.
+
+On the other hand, the KL-vanishing problem sometimes happens depending on specific datasets. From the auto-encoder perspective \citep{Shen_2018}, TCLGP gains more from ignoring the regularization of latent variables and utilizing the reconstruction term. So optimization is biased toward reconstruction and ignoring regularization of latent variables. We utilize the KL-annealing \citep{Bowman_2015} for an easier optimization. The KL-annealing suggests adding a small weight to KL divergences initially and increasing this weight gradually to 1 in the whole optimization process. This approach prevents the TCLGP model from zeroing out the KL divergences in the early training stage.
+
+The details of stochastic variational inference algorithm for large datasets are discussed in the appendix~\ref{sec: scia}.
+
+
+\bibliographystyle{apalike}
+\bibliography{ref}
+
+\end{document}

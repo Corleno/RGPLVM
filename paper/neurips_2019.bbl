@@ -1,0 +1,92 @@
+\begin{thebibliography}{}
+
+\bibitem[{Bowman} et~al., 2015]{Bowman_2015}
+{Bowman}, S.~R., {Vilnis}, L., {Vinyals}, O., {Dai}, A.~M., {Jozefowicz}, R.,
+  and {Bengio}, S. (2015).
+\newblock {Generating Sentences from a Continuous Space}.
+\newblock {\em ArXiv e-prints}.
+
+\bibitem[Duchi et~al., 2010]{Duchi_2011}
+Duchi, J., Hazan, E., and Singer, Y. (2010).
+\newblock Adaptive subgradient methods for online learning and stochastic
+  optimization.
+\newblock Technical Report UCB/EECS-2010-24, EECS Department, University of
+  California, Berkeley.
+
+\bibitem[{Gal} et~al., 2015]{Gal_2015}
+{Gal}, Y., {Chen}, Y., and {Ghahramani}, Z. (2015).
+\newblock {Latent Gaussian Processes for Distribution Estimation of
+  Multivariate Categorical Data}.
+\newblock {\em ArXiv e-prints}.
+
+\bibitem[{Hensman} et~al., 2013]{Hensman_2013}
+{Hensman}, J., {Fusi}, N., and {Lawrence}, N.~D. (2013).
+\newblock {Gaussian Processes for Big Data}.
+\newblock {\em ArXiv e-prints}.
+
+\bibitem[Hinton, 2012]{Hilton_2012}
+Hinton, G. (2012).
+\newblock Lecture 6e of his coursera class.
+\newblock {\em Lecture in his Coursera}.
+
+\bibitem[{Kingma} and {Ba}, 2014]{Kingma_2014}
+{Kingma}, D.~P. and {Ba}, J. (2014).
+\newblock {Adam: A Method for Stochastic Optimization}.
+\newblock {\em ArXiv e-prints}.
+
+\bibitem[Kingma and Welling, 2013]{Kingma_2013}
+Kingma, D.~P. and Welling, M. (2013).
+\newblock Auto-encoding variational bayes.
+\newblock {\em CoRR}, abs/1312.6114.
+
+\bibitem[Lawrence, 2003]{Lawrence_2003}
+Lawrence, N.~D. (2003).
+\newblock Gaussian process latent variable models for visualisation of high
+  dimensional data.
+\newblock In {\em NIPS}.
+
+\bibitem[Lawrence and Moore, 2007]{Lawrence_2007_HGP}
+Lawrence, N.~D. and Moore, A.~J. (2007).
+\newblock Hierarchical gaussian process latent variable models.
+\newblock In {\em Proceedings of the 24th International Conference on Machine
+  Learning}, ICML '07, pages 481--488, New York, NY, USA. ACM.
+
+\bibitem[MacKay, 1996]{MacKay1996}
+MacKay, D. J.~C. (1996).
+\newblock {\em Bayesian Methods for Backpropagation Networks}, pages 211--254.
+\newblock Springer New York, New York, NY.
+
+\bibitem[Rasmussen and Williams, 2005]{Rasmussen_2005}
+Rasmussen, C.~E. and Williams, C. K.~I. (2005).
+\newblock {\em Gaussian Processes for Machine Learning (Adaptive Computation
+  and Machine Learning)}.
+\newblock The MIT Press.
+
+\bibitem[{Shen} et~al., 2018]{Shen_2018}
+{Shen}, X., {Su}, H., {Niu}, S., and {Demberg}, V. (2018).
+\newblock {Improving Variational Encoder-Decoders in Dialogue Generation}.
+\newblock {\em ArXiv e-prints}.
+
+\bibitem[Titsias, 2009]{Titsias_2009}
+Titsias, M. (2009).
+\newblock Variational learning of inducing variables in sparse gaussian
+  processes.
+\newblock In van Dyk, D. and Welling, M., editors, {\em Proceedings of the
+  Twelth International Conference on Artificial Intelligence and Statistics},
+  volume~5 of {\em Proceedings of Machine Learning Research}, pages 567--574,
+  Hilton Clearwater Beach Resort, Clearwater Beach, Florida USA. PMLR.
+
+\bibitem[Titsias and Lawrence, 2010]{Titsias_2010}
+Titsias, M. and Lawrence, N.~D. (2010).
+\newblock Bayesian gaussian process latent variable model.
+\newblock In Teh, Y.~W. and Titterington, M., editors, {\em Proceedings of the
+  Thirteenth International Conference on Artificial Intelligence and
+  Statistics}, volume~9 of {\em Proceedings of Machine Learning Research},
+  pages 844--851, Chia Laguna Resort, Sardinia, Italy. PMLR.
+
+\bibitem[{Zeiler}, 2012]{Zeiler_2012}
+{Zeiler}, M.~D. (2012).
+\newblock {ADADELTA: An Adaptive Learning Rate Method}.
+\newblock {\em ArXiv e-prints}.
+
+\end{thebibliography}
