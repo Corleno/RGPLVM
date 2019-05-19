@@ -1,0 +1,210 @@
+\appendix
+
+\section{Regularization Theorems} 
+\label{sec: rt}
+\begin{lemma}
+	When $q(\bm z_m) = \mathcal{N}(\bm \nu_m, \epsilon I)$, as $\epsilon \rightarrow 0$, $\bm z_m \stackrel{p}{\rightarrow} \bm \nu_m$.
+\end{lemma}
+
+\begin{proof} Since
+	\begin{eqnarray}
+	\lim\limits_{\epsilon \rightarrow 0} p(|\bm z_m - \bm \nu_m| > \epsilon_0) & = & \lim\limits_{\epsilon \rightarrow 0} p(|\frac{\bm z_m - \bm \nu_m}{\epsilon}| > \frac{\epsilon_0}{\epsilon}) \nonumber \\
+	& = & 2\lim\limits_{\epsilon \rightarrow 0} (1 - \Phi(\frac{\epsilon_0}{\epsilon}))^{Q} \nonumber \\
+	& = & 0 \,, \nonumber
+	\end{eqnarray}
+	we conclude that $\bm z_m \stackrel{p}{\rightarrow} \bm \nu_m$.
+\end{proof}
+
+\begin{lemma}
+	The variational lower bound in the empirical Bayesian model is derived as 
+	\begin{eqnarray}
+	\log p(Y) & \geq & E_{q(F, U, X, Z)}\log p(Y|F) - \mathrm{KL}(q(X)||p(X)) - \mathrm{KL}(q(U)||p(U)) - A + B + C \nonumber
+	\end{eqnarray}
+	where $A = \frac{M}{2}(\log |\hat{\Sigma}_{\bm \mu}| + \log|\hat{\bm\Sigma}_{\bm\nu}| + Q) + \frac{1}{2}\left(\sum_{m = 1}^M(\bm\nu_m - \hat{\bm \mu}_{\bm \mu})^T\hat{\Sigma}_{\bm\mu}^{-1}(\bm\nu_m - \hat{\bm \mu}_{\bm \mu})\right)$, $B = \frac{M}{2}(Q\log\epsilon-\log K)$ and $C = \frac{2\epsilon}{M\mathrm{tr}(\hat{\Sigma}_{\bm\mu}^{-1})}$.
+\end{lemma}
+
+\begin{proof}
+	{\footnotesize
+		\begin{eqnarray}
+		\log p(\bm Y) & \geq &  E_{q(F, U, X, Z)}\log p(Y|F) - \mathrm{KL}(q(\bm X)|| p(\bm X)) - \mathrm{KL}(q(\bm U) ||p(\bm U )) -\mathrm{KL}(q(\bm Z)|| p(\bm Z)) \nonumber \\
+		& = & E_{q(F, U, X, Z)}\log p(Y|F) - \mathrm{KL}(q(\bm X)|| p(\bm X)) - \mathrm{KL}(q(\bm U) ||p(\bm U )) - A \nonumber \\
+		& & + \frac{M}{2}(Q\log\epsilon-\log |\hat{\bm\Sigma}_{\bm \nu}|) + C \nonumber \\
+		& \geq & E_{q(F, U, X, Z)}\log p(Y|F) - \mathrm{KL}(q(X)||p(X)) - \mathrm{KL}(q(U)||p(U)) - A + B + C \nonumber
+		\end{eqnarray}
+	}
+\end{proof}
+
+\begin{lemma}
+	We derive the regularization term as $M\mathrm{KL}(q_Z || q_X) = \frac{M}{2}(\log |\hat{\Sigma}_{\bm \mu}| + \log|\hat{\bm\Sigma}_{\bm z}| + Q) + \frac{1}{2}\left(\sum_{m = 1}^M(\bm z_m - \hat{\bm \mu}_{\bm \mu})^T\hat{\Sigma}_{\bm\mu}^{-1}(\bm z_m - \hat{\bm \mu}_{\bm \mu})\right)$.
+\end{lemma}
+
+\begin{proof}
+	{\footnotesize
+		\begin{eqnarray}
+		\mathrm{KL}(q_Z || q_X) & = & \frac{1}{2}\left[\log\frac{|\hat{\Sigma}_{\bm\mu}|}{|\hat{\Sigma}_Z|} - Q + \mathrm{tr}(\hat{\Sigma}_{\bm\mu}^{-1}\hat{\Sigma}_Z)+(\hat{\bm \mu}_{\bm\mu} - \hat{\bm \mu}_Z)^T\hat{\Sigma}_{\bm\mu}^{-1}(\hat{\bm \mu}_{\bm\mu} - \hat{\bm \mu}_Z)\right] \nonumber \\
+		& = & \frac{1}{2}\left[\log\frac{|\hat{\Sigma}_{\bm\mu}|}{|\hat{\Sigma}_Z|} - Q + \mathrm{tr}\left(\hat{\Sigma}_{\bm\mu}^{-1}((\hat{\bm \mu}_{\bm\mu} - \hat{\bm \mu}_Z)(\hat{\bm \mu}_{\bm\mu} - \hat{\bm \mu}_Z)^T + \hat{\Sigma}_Z)\right)\right] \nonumber \\
+		& = & \frac{1}{2}\Bigg[\log\frac{|\hat{\Sigma}_{\bm\mu}|}{|\hat{\Sigma}_Z|} - Q + \frac{1}{M}\mathrm{tr}\bigg(\hat{\Sigma}_{\bm\mu}^{-1}(M(\hat{\bm \mu}_{\bm\mu} - \hat{\bm \mu}_Z)(\hat{\bm \mu}_{\bm\mu} - \hat{\bm \mu}_Z)^T + \sum_{m = 1}^{M}(\bm u_m - \hat{\bm \mu}_Z)(\bm u_m - \hat{\bm \mu}_Z)^T\bigg)\Bigg] \nonumber \\
+		& = & \frac{1}{2}\Bigg[\log\frac{|\hat{\Sigma}_{\bm\mu}|}{|\hat{\Sigma}_Z|} - Q + \frac{1}{M}\mathrm{tr}\bigg(\hat{\Sigma}_{\bm\mu}^{-1}(M\hat{\bm \mu}_{\bm\mu}\hat{\bm \mu}_{\bm\mu}^T - M\hat{\bm \mu}_{\bm\mu}\hat{\bm \mu}_Z^T - M\hat{\bm \mu}_Z\hat{\bm \mu}_{\bm\mu}^T + M\hat{\bm \mu}_Z\hat{\bm \mu}_Z^T \nonumber \\ 
+		& & + \sum_{m = 1}^{M}\bm u_m \bm u_m^T - (\sum_{m = 1}^{M}\bm z_m)\hat{\bm \mu}_Z^T - \hat{\bm \mu}_Z(\sum_{m = 1}^{M}\bm z_m)^T + M\hat{\bm \mu}_Z\hat{\bm \mu}_Z^T \bigg)\Bigg] \nonumber \\
+		& = &  \frac{1}{2}\left[\log\frac{|\hat{\Sigma}_{\bm\mu}|}{|\hat{\Sigma}_Z|} - Q + \frac{1}{M}\mathrm{tr}\bigg(\hat{\Sigma}_{\bm\mu}^{-1}(\sum_{m = 1}^{M}\bm z_m\bm z_m^T - M\hat{\bm \mu}_{\bm\mu}\hat{\bm \mu}_Z^T - M\hat{\bm \mu}_Z\hat{\bm \mu}_{\bm\mu}^T + M\hat{\bm \mu}_X\hat{\bm \mu}_{\bm\mu}^T)\bigg)\right]\nonumber \\
+		& = &  \frac{1}{2}\Bigg[\log\frac{|\hat{\Sigma}_{\bm\mu}|}{|\hat{\Sigma}_Z|} - Q + \frac{1}{M}\mathrm{tr}\bigg(\hat{\Sigma}_{\bm\mu}^{-1}(\sum_{m = 1}^{M}\bm z_m\bm z_m^T - \hat{\bm \mu}_{\bm\mu}(\sum_{m = 1}^{M}\bm z_m)^T - (\sum_{m = 1}^{M}\bm z_m)\hat{\bm \mu}_{\bm\mu}^T + M\hat{\bm \mu}_{\bm\mu}\hat{\bm \mu}_{\bm\mu}^T)\bigg)\Bigg]\nonumber \\
+		& = & \frac{1}{2}\Bigg[\log\frac{|\hat{\Sigma}_{\bm\mu}|}{|\hat{\Sigma}_Z|} - Q + \frac{1}{M}\mathrm{tr}\bigg(\hat{\Sigma}_{\bm\mu}^{-1}(\sum_{m = 1}^{M}\bm z_m\bm z_m^T - \hat{\bm \mu}_{\bm\mu}(\sum_{m = 1}^{M}\bm u_m)^T - (\sum_{m = 1}^{M}\bm z_m)\hat{\bm \mu}_{\bm\mu}^T + M\hat{\bm \mu}_{\bm\mu}\hat{\bm \mu}_{\bm\mu}^T)\bigg)\Bigg]\nonumber \\
+		& = & \frac{1}{2}\Bigg[\log\frac{|\hat{\Sigma}_{\bm\mu}|}{|\hat{\Sigma}_Z|} - Q + \frac{1}{M}\mathrm{tr}\bigg(\hat{\Sigma}_{\bm\mu}^{-1}(\sum_{m = 1}^{M}(\bm z_m - \hat{\bm \mu}_{\bm\mu})(\bm z_m - \hat{\bm \mu}_{\bm\mu})^T)\bigg)\Bigg]\nonumber \\
+		& = & \frac{1}{M}\sum_{m = 1}^{M}\frac{1}{2}\left[\log\frac{|\hat{\Sigma}_{\bm\mu}|}{|\hat{\Sigma}_Z|} - Q + (\bm z_m - \hat{\bm \mu}_{\bm\mu})^T\hat{\Sigma}_{\bm\mu}^{-1}(\bm z_m - \hat{\bm \mu}_{\bm\mu})\right]\nonumber \,.
+		\end{eqnarray}
+	}
+	
+	Therefore, $ M\mathrm{KL}(q_Z || q_X) = \frac{1}{2}\sum_{m = 1}^{M}\left[\log\frac{|\hat{\Sigma}_{\bm\mu}|}{|\hat{\Sigma}_Z|} - Q + (\bm z_m - \hat{\bm \mu}_{\bm\mu})^T\hat{\Sigma}_{\bm\mu}^{-1}(\bm z_m - \hat{\bm \mu}_{\bm\mu})\right] =\frac{M}{2}(\log |\hat{\Sigma}_{\bm \mu}| + \log|\hat{\bm\Sigma}_{\bm z}| + Q) + \frac{1}{2}\left(\sum_{m = 1}^M(\bm z_m - \hat{\bm \mu}_{\bm \mu})^T\hat{\Sigma}_{\bm\mu}^{-1}(\bm z_m - \hat{\bm \mu}_{\bm \mu})\right)$. 
+\end{proof}
+
+\begin{theorem}
+	As $\epsilon \rightarrow 0$, maximizing the variational lower bound in empirical Bayesian model is equivalent to maximizing the MELBO in the GPLVM with respect to $Z, q(X)$ and $q(U)$.
+\end{theorem}
+
+\begin{proof}
+    In the empirical Bayesian model, variational parameters are $\bm \mu, \bm \Sigma, \bm m, \bm s, \bm \nu$. We denote all parameters as $\varTheta$. We have $\lim\limits_{\epsilon \rightarrow 0}C = 0$ and 
+	\begin{eqnarray}
+    \lim\limits_{\epsilon \rightarrow 0}E_{q(F, U, X, Z)}\log p(Y|F) & = & E_{q(F, U, X| Z = \bm \nu)}\log p(Y|F)
+	\end{eqnarray}
+	Then according to Lemma 2, we derive that
+	\begin{eqnarray}
+	& \arg\max\limits_{\varTheta}\lim\limits_{\epsilon \rightarrow 0} E_{q(F, U, X, Z)}\log p(Y|F) - \mathrm{KL}(q(X)||p(X)) - \mathrm{KL}(q(U)||p(U)) - A + B + C \nonumber \\
+	= & 
+	\arg\max\limits_{\varTheta}\lim\limits_{\epsilon\rightarrow 0} E_{q(F, U, X, Z)}\log p(Y|F) - \mathrm{KL}(q(X)||p(X)) - \mathrm{KL}(q(U)||p(U)) - A  \nonumber \\  
+	= & \arg\max\limits_{\varTheta} E_{q(F, U, X| Z=\bm \nu)}\log p(Y|F) - \mathrm{KL}(q(X)|| p(X)) - \mathrm{KL}(q(U) ||p(U )) - A \nonumber 
+	\end{eqnarray}
+	When we replace $\bm \nu$ as $Z$, due to Lemma 3, this optimization is equivalent to maximize $\mathrm{ELBO} - M\mathrm{KL}(q_Z||q_X)$ which is the exactly MELBO. Finally due to Lemma 1, the $q(Z)$ in empirical Bayesian model will converges to the same optimized $Z$ in the GPLVM with regularization.
+\end{proof}
+
+\section{Stochastic Variational Inference Algorithm}
+\label{sec: scia}
+This section displays a general stochastic variational inference algorithm for large datasets. In this framework, we set the number of training epochs $N_{train}$ and evenly divide the whole dataset into $N_{batch}$ clusters. Each cluster includes the observations $\bm Y_i$ and their corresponding time stamp data $\tilde{\bm T}_i$ and their corresponding hyper-parameters of embedding inputs, $\bm m_i$ for the mean and $\bm s_i$ for the standard deviation. In the context of the TCLGP, the model parameters include $\bm \theta, \bm Z, \bm \mu, \bm \Sigma$ and the model inputs include both observable data $\bm Y_i, \tilde{\bm T}_i$ and latent hyper-parameters $\bm m_i, \bm s_i$. Suppose the MELBO(g) is rewritten as
+\begin{eqnarray}
+\mathrm{MELBO(g)} & = & \mathrm{ELBO(g)} - \lambda\mathrm{R} \nonumber \\
+& = & gR_0 + R_1 - \lambda\mathrm{R}\,, \nonumber \\
+R_0 & = & -\mathrm{KL}(q(\bm X) || p(\bm X | \tilde{\bm T})) - \mathrm{KL}(q(\bm U) || p(\bm U)) \,, \nonumber \\
+R_1 & = & \int q(\bm X) q(\bm  U) p(\bm F | \bm X, \bm U) \log\left(\sum_{n = 1}^{N}\sum_{d = 1}^{D}\sum_{t = 1}^{T} p(\bm y_{ndt} | \bm f_{ndt})\right)d\bm X \bm U \bm F \,, \nonumber
+\end{eqnarray}
+where $R_0$ and $R_1$ are the regularization term and the reconstruction term 
+in the ELBO separately and $\mathrm{R}$ is a regularization term related to inducing inputs, and $g\in[0,1])$ is the annealing factor referred in \cite{Bowman_2015}. The annealing increase factor is denoted as $\Delta g$. Then inference algorithm is displayed as follows: 
+
+\begin{algorithm}[H]
+	\SetAlgoLined
+	Set $g = 0$\;
+	\For{$i = 1$ \KwTo $N_{train}$}{
+		\For{$j = 1$ \KwTo $N_{batch}$}{
+			Assign both observable data $\bm Y_i, \tilde{\bm T}_i$ and latent data $\bm m_i, \bm s_i$ to the TCLGP model\;
+			Update model parameters $\bm \theta, \bm Z, \bm \mu, \bm \Sigma$ and latent hyper-parameters $\bm m_i, \bm s_i$ through maximizing the MELBO(g) using a stochastic gradient descend method.\;
+			}
+		$g = \min(g + \Delta g, 1)$\;
+		}
+	\caption{Stochastic variational inference algorithm for large datasets.}
+\end{algorithm}
+
+
+
+%\section{KL divergence of Multivariate Normal distributions} 
+%\label{sec: kl_mn}
+%Assume the dimension size is $D$ and $p \sim \mathcal{N}(\bm \mu, \Sigma)$ and $q \sim \mathcal{N}(\tilde{\bm\mu}, \tilde{\Sigma})$. Then KL divergence between $p$ and $q$ is expressed as:
+%\begin{eqnarray}
+%\mathcal{KL}[p||q] & = & \frac{1}{2}\left(\log\frac{|\tilde{\Sigma}|}{|\Sigma|} - D + \mathrm{tr}(\tilde{\Sigma}^{-1}\Sigma) + (\tilde{\bm \mu} - \bm \mu)^T\tilde{\Sigma}^{-1}(\tilde{\bm \mu} - \bm \mu) \right)
+%\label{KL_MN}
+%\end{eqnarray}
+
+%\section{KL divergence of Inverse Gamma distribution}
+%Assume $p \sim \mathcal{IG}(\alpha, \beta)$ and $q \sim \mathcal{IG}(\tilde{\alpha}, \tilde{\beta})$. Then KL divergence between $p$ and $q$ is expressed as \cite{Beckmann_2016}:
+%\begin{eqnarray}
+%\mathcal{KL}[p||q] & = & \int_{0}^{\infty} p(x)\log\frac{p(x)}{q(x)}dx \\
+%& = & (\alpha - \tilde{\alpha})\Psi(\alpha) + \tilde{\beta}(\frac{\alpha}{\beta}) - \alpha + \log\frac{\beta^{\tilde{\alpha}+1}\Gamma(\tilde{\alpha})}{\beta\tilde{\beta}^{\tilde{\alpha}}\Gamma(\alpha)}
+%\end{eqnarray}
+%
+%\section{KL divergence of Dirichlet distribution}
+%Assume $p \sim \mathrm{Dir}(\bm c)$ and $q \sim \mathrm{Dir}(\tilde{\bm c})$. Then KL divergence between $p$ and $q$ is expressed as:
+%\begin{eqnarray}
+%\mathcal{KL}[p||q] & = & \log\Gamma(c_0) - \sum_{i = 1}^{n}\log\Gamma(c_i) - \log\Gamma(\tilde{c}_0) + \sum_{i = 1}^{n}\log\Gamma(\tilde{c}_i) + \sum_{i = 1}^{n}(c_i - \tilde{c}_i)(\Psi(c_i) - \Psi(c_0))
+%\end{eqnarray}
+%
+%\section{KL divergence of Normal distribution}
+%Assume $p \sim \mathcal{N}(\mu, \sigma^2)$ and $q \sim \mathcal{N}(\tilde{ \mu}, \tilde{\sigma}^2)$. Then KL divergence between $p$ and $q$ is expressed as:
+%\begin{eqnarray}
+%\mathcal{KL}[p||q] & = & \log\frac{\tilde{\sigma}}{\sigma} + \frac{\sigma^2 + (\mu- \tilde{\mu})^2}{2\tilde{\sigma}^2} - \frac{1}{2}
+%\end{eqnarray}
+%
+%
+%\section{KL divergence between Uniform distribution and Normal distribution}
+%Assume $p \sim \mathcal{U}(a, b)$ and $q \sim \mathcal{N}(\mu, \sigma^2)$. Then KL divergence between $p$ and $q$ is expressed as:
+%\begin{eqnarray}
+%\mathcal{KL}[p||q] & = & \int_{-\infty}^{\infty}p(x)\log(\frac{p(x)}{q(x)})dx \nonumber \\
+%& = & -\int_{a}^{b} \log(q(x))dx \nonumber \\
+%& = & (b-a)\log(\sqrt{2\pi}\sigma) + \frac{x^3}{6}|_{\frac{a-\mu}{\sigma}}^{\frac{b-\mu}{\sigma}}
+%\end{eqnarray}
+%
+%
+%\section{KL divergence of Categorical distribution}	
+%Assume $p \sim \mathrm{Cat}(\bm \pi)$ and $q \sim \mathrm{Cat}(\tilde{\bm \pi})$. Then KL divergence between $p$ and $q$ is expressed as:
+%\begin{eqnarray}
+%\mathcal{KL}[p||q] & = & \sum_{i = 1}^{n}\pi_i\log\frac{\pi_i}{\tilde{\pi}_i}
+%\end{eqnarray}
+
+%\section{Advanced MCMC} \label{sec: Advanced MCMC}
+%This section, we introduce three advanced MCMC algorithms. First of all, we introduce traditional Metropolis Hasting framework.
+%
+%Sampling $\bm \theta \sim p(\bm \theta)$ is of interest. The proposal transition distribution is set as $q(\bm \theta', \bm \theta)$. Then the recursive procedures are displayed as
+%\begin{itemize}
+%	\item Sample new parameters $\bm \theta_{new}\sim q(\bm \theta_{new}| \bm \theta^{(i)})$.
+%	\item Compute the accept rate $r = \min\left(\frac{p(\bm{\theta}_{new})q(\bm{\theta}| \bm{\theta}_{new})}{p(\bm{\theta})q(\bm \theta_{new}| \bm{\theta})}, 1\right)$.
+%	\item Accept $\bm \theta^{(i+1)} = \bm{\theta}_{new}$ with probability $r$, otherwise, keep previous parameters $\bm \theta^{(i+1)} = \bm{\theta}^{(i)}$.
+%\end{itemize}
+%
+%The three algorithms are based on the basic Metropolis Hasting framework.
+%\subsection{Langevin Adapted Metropolis Hasting}
+%To utilize the gradient information, the proposal structure is proposed as the form\cite{Besag_1995}
+%\begin{eqnarray}
+%\bm \theta_{new} = \bm \theta + \frac{\epsilon^2}{2}g(\bm \theta) + \epsilon\mathcal{N}(\bm 0, \bm I)
+%\end{eqnarray}
+%where $g(\bm{\theta}) = \triangledown\log p(\bm\theta)$. It suggests the proposal kernel is 
+%\begin{eqnarray}
+%q(\bm \theta_{new}, \bm \theta) = \exp\left[-\frac{1}{2\epsilon^2}\|\bm \theta - \bm \theta_{new} - \frac{\epsilon^2}{2}g(\bm \theta_{new})\|^2\right]
+%\end{eqnarray}
+%
+%\subsection{Hessian Adapted Metropolis Hasting}
+%\cite{Qi_2002} propose the Hessian adaptive Metropolis Hasting approach which utilize both gradient and Hessian matrix information in proposal structure
+%\begin{eqnarray}
+%\bm \theta_{new} = \bm \theta + \epsilon\Sigma(\bm \theta)g(\bm \theta) + \mathcal{N}(\bm 0, \Sigma(\bm\theta))
+%\end{eqnarray}
+%where $\Sigma(\bm{\theta}) = -\left(\triangledown\triangledown^T\log p(\bm\theta)\right)^{-1}$. It suggests the proposal kernel is 
+%\begin{eqnarray}
+%q(\bm \theta_{new}, \bm \theta) = \mathcal{N}(\bm{\theta}_{new} - \bm \theta + \epsilon\Sigma(\bm \theta)g(\bm \theta), \Sigma(\bm \theta))
+%\end{eqnarray}
+%
+%
+%\subsection{Fisher Adapted Metropolis Hasting}
+%One concern of Hessian Adapted Metropolis Hasting algorithm is that the matrix inverse problem. Numerically the Hessian matrix may not be positive definite. The idea of replace Hessian matrix by negative fisher information matrix has been explored. We proposed a simple proposal structure 
+%\begin{eqnarray}
+%	\bm \theta_{new} = \bm \theta + \mathcal{N}(\bm 0, \Sigma^*)
+%\end{eqnarray}
+%where $\Sigma^* = -(\triangledown\triangledown^{T}(\bm \theta^*))^{-1}$ is the inverse of the observed fisher information matrix and $\bm \theta^*$ is the maximum likelihood estimates for $\log p(\bm \theta)$. Then it is a symmetric random walk with proposal distribution such that
+%\begin{eqnarray}
+%q(\bm \theta_{new}, \bm\theta) = \mathcal{N}(\bm{\theta}_{new} - \bm\theta, \Sigma^*)
+%\end{eqnarray}
+%where $q(\bm \theta_{new}| \bm \theta)$ and $q(\bm \theta| \bm \theta_{new})$ cancel out in the computation of accept rate. The computation of Fisher Adapted Metropolis Hasting is much cheaper than Hessian Adapted Metropolis Hasting since it does not need to compute the proposal transition kernel in each iteration.
+%
+%\section{Matrix Gradient} \label{sec: Matrix Gradient}
+%Let $a_{ij} \in \mathbb{R}, i = 1, \ldots, m, j = 1, \ldots,n$. Then the real matrix $\bm A$ is expressed as 
+%\begin{eqnarray}
+%\bm A = \begin{pmatrix}
+%a_{11} & a_{12} & \ldots & a_{1n} \\
+%a_{21} & a_{22} & \ldots & a_{2n} \\
+%\vdots & \vdots & & \vdots \\
+%a_{m1} & a_{m2} & \ldots & a_{mn}
+%\end{pmatrix}\,.
+%\end{eqnarray}
+%Assume $f$ is a mapping from $\mathbb{R}^{m \times n}$ to $\mathbb{R}$. Then the gradient of $f(\bm A)$ can be expressed as 
+%\begin{eqnarray}
+%\frac{\partial}{\partial \bm A}f(\bm A) = \bm A' = \begin{pmatrix}
+%\frac{\partial}{\partial a_{11}} & \frac{\partial}{\partial a_{12}} & \ldots & \frac{\partial}{\partial a_{1n}} \\
+%\frac{\partial}{\partial a_{21}} & \frac{\partial}{\partial a_{22}} & \ldots & \frac{\partial}{\partial a_{2n}} \\
+%\vdots & \vdots & & \vdots \\
+%\frac{\partial}{\partial a_{m1}} & \frac{\partial}{\partial a_{m2}} & \ldots & \frac{\partial}{\partial a_{mn}}
+%\end{pmatrix} \bm A\,.
+%\end{eqnarray}

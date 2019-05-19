@@ -1,15 +1,19 @@
 \BOOKMARK [1][-]{section.1}{Introduction}{}% 1
-\BOOKMARK [1][-]{section.2}{Related Work}{}% 2
-\BOOKMARK [1][-]{section.3}{Sparse Gaussian Process}{}% 3
-\BOOKMARK [1][-]{section.4}{Gaussian Process Latent Variable Model}{}% 4
-\BOOKMARK [1][-]{section.5}{Regularization for Sparse Latent Gaussian Process}{}% 5
-\BOOKMARK [1][-]{section.6}{Regularization Theory}{}% 6
-\BOOKMARK [1][-]{section.7}{Temporal Categorical Latent Gaussian Process}{}% 7
-\BOOKMARK [1][-]{section.8}{Experiments}{}% 8
-\BOOKMARK [1][-]{section.9}{Conclusion}{}% 9
-\BOOKMARK [1][-]{section.10}{Regularization for Inducing Inputs}{}% 10
-\BOOKMARK [2][-]{subsection.10.1}{Regularization using KL Divergence}{section.10}% 11
-\BOOKMARK [1][-]{section.11}{Regularization Bayesian Theory}{}% 12
-\BOOKMARK [2][-]{subsection.11.1}{Empirical Bayesian Model with a Prior of Inducing Inputs}{section.11}% 13
-\BOOKMARK [1][-]{section.12}{Relation between CLGP and Empirical Bayesian Model}{}% 14
-\BOOKMARK [1][-]{section.13}{Variational Inference}{}% 15
+\BOOKMARK [1][-]{section.2}{Sparse Gaussian Process}{}% 2
+\BOOKMARK [1][-]{section.3}{Regularization for Latent Sparse Gaussian Process}{}% 3
+\BOOKMARK [2][-]{subsection.3.1}{Regularization}{section.3}% 4
+\BOOKMARK [2][-]{subsection.3.2}{Regularization Theory}{section.3}% 5
+\BOOKMARK [1][-]{section.4}{Temporal Categorical Latent Gaussian Process}{}% 6
+\BOOKMARK [2][-]{subsection.4.1}{Model}{section.4}% 7
+\BOOKMARK [2][-]{subsection.4.2}{Inference}{section.4}% 8
+\BOOKMARK [2][-]{subsection.4.3}{Prediction}{section.4}% 9
+\BOOKMARK [1][-]{section.5}{Experiments}{}% 10
+\BOOKMARK [2][-]{subsection.5.1}{Anuran}{section.5}% 11
+\BOOKMARK [2][-]{subsection.5.2}{Synthetic Time Series}{section.5}% 12
+\BOOKMARK [2][-]{subsection.5.3}{Stock Index}{section.5}% 13
+\BOOKMARK [3][-]{subsubsection.5.3.1}{Data Description}{subsection.5.3}% 14
+\BOOKMARK [3][-]{subsubsection.5.3.2}{Hyper-parameters Analysis}{subsection.5.3}% 15
+\BOOKMARK [3][-]{subsubsection.5.3.3}{Latent Processes Visualization}{subsection.5.3}% 16
+\BOOKMARK [1][-]{section.6}{Conclusion}{}% 17
+\BOOKMARK [1][-]{appendix.A}{Regularization Theorems}{}% 18
+\BOOKMARK [1][-]{appendix.B}{Stochastic Variational Inference Algorithm}{}% 19
