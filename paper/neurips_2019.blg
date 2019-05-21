@@ -4,45 +4,45 @@ The top-level auxiliary file: neurips_2019.aux
 The style file: apalike.bst
 Database file #1: ref.bib
 Warning--empty journal in Mardia_1979
-You've used 25 entries,
+You've used 26 entries,
             1935 wiz_defined-function locations,
-            647 strings with 8238 characters,
-and the built_in function-call counts, 10612 in all, are:
-= -- 1060
-> -- 399
+            652 strings with 8390 characters,
+and the built_in function-call counts, 10980 in all, are:
+= -- 1093
+> -- 417
 < -- 27
-+ -- 129
-- -- 127
-* -- 824
-:= -- 1774
-add.period$ -- 80
-call.type$ -- 25
-change.case$ -- 183
-chr.to.int$ -- 25
-cite$ -- 26
-duplicate$ -- 461
-empty$ -- 761
-format.name$ -- 170
-if$ -- 2182
++ -- 135
+- -- 133
+* -- 852
+:= -- 1839
+add.period$ -- 83
+call.type$ -- 26
+change.case$ -- 191
+chr.to.int$ -- 26
+cite$ -- 27
+duplicate$ -- 479
+empty$ -- 790
+format.name$ -- 177
+if$ -- 2255
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 25
-newline$ -- 126
-num.names$ -- 83
-pop$ -- 180
+missing$ -- 26
+newline$ -- 131
+num.names$ -- 86
+pop$ -- 193
 preamble$ -- 1
-purify$ -- 184
+purify$ -- 192
 quote$ -- 0
-skip$ -- 368
+skip$ -- 376
 stack$ -- 0
-substring$ -- 702
-swap$ -- 112
+substring$ -- 714
+swap$ -- 113
 text.length$ -- 12
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 148
+type$ -- 154
 warning$ -- 1
-while$ -- 85
+while$ -- 87
 width$ -- 0
-write$ -- 331
+write$ -- 343
 (There was 1 warning)

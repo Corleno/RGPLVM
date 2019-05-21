@@ -22,6 +22,11 @@ Damianou, A.~C., Titsias, M.~K., and Lawrence, N.~D. (2016).
   gaussian processes.
 \newblock {\em Journal of Machine Learning Research}, 17(42):1--62.
 
+\bibitem[Ek et~al., 2007]{Lawrence_2007}
+Ek, C.~H., Torr, P. H.~S., and Lawrence, N.~D. (2007).
+\newblock Gaussian process latent variable models for human pose estimation.
+\newblock In {\em MLMI}.
+
 \bibitem[Finley et~al., 2009]{Finley_2009}
 Finley, A.~S., Huiyan~Banerjee, S., and Gelfand, A. (2009).
 \newblock Improving the performance of predictive process modeling for large
