@@ -53,28 +53,28 @@
 % authors names on the first line, and the last on the second line, try using
 % \AND instead of \And before the third author name.
 
-\author{%
-	Rui Meng%\thanks{Use footnote for providing further information
-		%about author (webpage, alternative address)---\emph{not} for acknowledging
-		%funding agencies.} 
-        \\
-	Department of Statistics\\
-	University of California\\
-	Santa Cruz, CA 95064 \\
-	\texttt{rmeng1@ucsc.edu} \\
-	% examples of more authors
-	\And
-	Herbert Lee \\
-	Department of Statistics\\
-	University of California\\
-	Santa Cruz, CA 95064 \\
-	\texttt{herbie@ucsc.edu} \\
-    \And
-	Braden Soper \\
-	Lawrence Livermore National Laboratory \\
-	Livermore, CA \\
-	\texttt{soper3@llnl.gov} \\
-}
+%\author{%
+%	Rui Meng%\thanks{Use footnote for providing further information
+%		%about author (webpage, alternative address)---\emph{not} for acknowledging
+%		%funding agencies.} 
+%        \\
+%	Department of Statistics\\
+%	University of California\\
+%	Santa Cruz, CA 95064 \\
+%	\texttt{rmeng1@ucsc.edu} \\
+%	% examples of more authors
+%	\And
+%	Herbert Lee \\
+%	Department of Statistics\\
+%	University of California\\
+%	Santa Cruz, CA 95064 \\
+%	\texttt{herbie@ucsc.edu} \\
+%    \And
+%	Braden Soper \\
+%	Lawrence Livermore National Laboratory \\
+%	Livermore, CA \\
+%	\texttt{soper3@llnl.gov} \\
+%}
 
 \begin{document}
 	
@@ -241,9 +241,9 @@ where $S_0 = C(t^*, \bm c_n; \hat{\bm \phi}_q)$ and $S_1 = C(t^*, \bm c_n; \hat{
 We illustrate our regularization on three datasets. First, we show that regularization is necessary in stochastic variational inference of a GPLVM using the Anuran Calls dataset. Second, we generate categorical time series data from a simple Markov model and demonstrate regularization is particularly important for the TCLGP model, even with low-dimensional data. Finally, we apply the TCLGP with regularization on a real dataset of stock indices and visualize the latent dynamics.
 
 \subsection{Anuran Calls Example}
-GPLVM is demonstrated as a powerful dimensionality reduction approach \citep{Lawrence_2003, Lawrence_2007}. It is a base model for many sophisticate models \citep{Lawrence_2007_HGP, Urtasun_2007, Damianou_2016}. So learning GPLVM is important, but when dealing with complicated data, inference is difficult due to unconvex optimization. This section, we show that regularization helps its inference on complicated datasets such as Anuran Call data set. This data set is available from the UCI repository at \url{https://archive.ics.uci.edu/ml/datasets/Anuran+Calls+(MFCCs)}, where there are $7195$ instances and each instance has $22$ attributes. Each instance belongs to one of eight Genus types. We model all instances using GPLVM and perform inference with regularization. Specifically, we set the latent dimension $Q = 5$ and use $M = 20$ inducing points in the latent SVGP model. Moreover, we choose independent standard Gaussian distributions as the prior distributions of inducing points and use the PCA approach for initialization of the inducing inputs.
+GPLVM is demonstrated as a powerful dimensionality reduction approach \citep{Lawrence_2003, Lawrence_2007}. It is a base model for many sophisticate models \citep{Lawrence_2007_HGP, Urtasun_2007, Damianou_2016}. So learning GPLVM is important, but when dealing with complicated data, inference is intractable due to non-convex optimization. This section, we show that regularization helps its inference on complicated datasets such as Anuran Call data set. This data set is available from the UCI repository at \url{https://archive.ics.uci.edu/ml/datasets/Anuran+Calls+(MFCCs)}, where there are $7195$ instances and each instance has $22$ attributes. Each instance belongs to one of eight Genus types. We model all instances using GPLVM and perform inference with regularization. Specifically, we set the latent dimension $Q = 5$ and use $M = 20$ inducing points in the latent SVGP model. Moreover, we choose independent standard Gaussian distributions as the prior distributions of inducing points and use the PCA approach for initialization of the inducing inputs.
 
-Under different regularization weights $\lambda$, the latent means are displayed in Figure~\ref{fig:ANURAN} using the most two informative dimensions in the ARD kernel. After enough iterations, their variational lower bounds are 1.66e+5, 1.64e+5, 1.66e+5, 1.76e+5 for SVI in GPLVM with $\lambda = 0 ,20, 50, 100$, respectively. It illustrates that for complicated data such as the Anuran Calls data set, regularization contributes to better optimization and better model fitting.
+Under different regularization weights $\lambda$, the latent means are displayed in Figure~\ref{fig:ANURAN} using the two most informative dimensions in the automatic relevance determination (ARD) kernel. After enough iterations, their MELBOs are 1.66e+5, 1.64e+5, 1.66e+5, 1.76e+5 for SVI in GPLVM with $\lambda = 0 ,20, 50, 100$, respectively. Even with penalty on $\lambda = 100$, the MELBO is larger than the others. This suggests that for complicated data such as the Anuran Calls data set, regularization contributes to better optimization and better model fitting.
 
 \begin{figure}[ht!]
 	\centering
@@ -256,7 +256,7 @@ Under different regularization weights $\lambda$, the latent means are displayed
 \end{figure}
  
 \subsection{Synthetic Time Series}
-In this section, we propose a simple Markov model to generate categorical time-series. Suppose we have categorical data with two dimensions, in which the first dimension has two levels and the second dimension has three levels. The two dimensions are modeled independently. We propose transition matrices in the two dimensions as $\begin{bmatrix}
+In this section, we propose a simple Markov model to generate categorical time-series. Suppose we have categorical data with two dimensions, in which the first dimension has two levels and the second dimension has three levels. Totally, we have six observable categories. The two dimensions are modeled independently. We propose transition matrices in the two dimensions as $\begin{bmatrix}
 0.9 & 0.1\\
 0.1 & 0.9
 \end{bmatrix}$, 
@@ -267,7 +267,7 @@ and$ \begin{bmatrix}
 \end{bmatrix}$ respectively. We simulate initial levels uniformly and then generate time series of size $10$ from the simple Markov model and set time stamps evenly distributed over an unit interval. 
 
 For each time series, we take first 9 data points for training and 
-take the last data point for testing. We train our model using ARD kernels for all GPs, with and without regularization. We set $M = 20$ inducing points and take latent dimension size $Q = 5$. We initialize the inducing inputs with independent standard normal distributions and initialize the latent input mean with zeros. After training, the latent variables of the training data are displayed in Figure~\ref{fig:SIM} using the most two informative dimensions based on ARD kernels. Specifically, we select $d$ pairs of dimensions using the smallest two length-scale values in $C(\bm\theta_d)$ to display. ELBO and MELBO values are summarized in Table~\ref{tab:SIM}. This illustrates that the inducing inputs have bad coverage for the latent inputs without regularization. As $\lambda$ increases, the coverage becomes better but its evidence lower bound (ELBO) decreases. The ELBO with $\lambda = 100$ is significantly smaller than ELBO with $\lambda = 20$ or $50$. Furthermore, we repeatedly run the whole experiment $100$ times with random initialization. The prediction accuracy of GPLVM with and without regularization is $74.34\%(4.13\%)$, $75.79\%(4.34\%)$, $77.01\%(4.61\%)$ and $75.11\%(5.19\%)$ for $\lambda = 0, 20$, $50$ and $100$ respectively, where values in the bracket represents the standard deviation. It illustrates that regularization with suitable $\lambda$ contributes to better model prediction. 
+take the last data point for testing. We train our model using ARD kernels for all GPs, with and without regularization. We set $M = 20$ inducing points and take latent dimension size $Q = 5$. We initialize the inducing inputs with independent standard normal distributions and initialize the latent input mean with zeros. After training, the latent variables of the training data are displayed in Figure~\ref{fig:SIM} using the two most informative dimensions based on ARD kernels. Specifically, for each dimensional, we select the two most informative dimensions with respect to the two smallest length-scale values in $\bm\theta_d$. ELBO and MELBO values are summarized in Table~\ref{tab:SIM}. This illustrates that the inducing inputs have bad coverage for the latent inputs without regularization. As $\lambda$ increases, the coverage becomes better but its evidence lower bound (ELBO) decreases. The ELBO with $\lambda = 100$ is significantly smaller than ELBO with $\lambda = 20$ or $50$. Furthermore, we repeatedly run the whole experiment $100$ times with random initialization. The prediction accuracy of GPLVM with and without regularization is $74.34\%(4.13\%)$, $75.79\%(4.34\%)$, $77.01\%(4.61\%)$ and $75.11\%(5.19\%)$ for $\lambda = 0, 20$, $50$ and $100$ respectively, where values in the bracket represents the standard deviation. It illustrates that regularization with suitable $\lambda$ contributes to better model prediction. 
 
 
 \begin{figure}[ht!]
@@ -280,7 +280,7 @@ take the last data point for testing. We train our model using ARD kernels for a
 	\includegraphics[width=0.24\linewidth]{pic/LAM20D1}
 	\includegraphics[width=0.24\linewidth]{pic/LAM50D1}
 	\includegraphics[width=0.24\linewidth]{pic/LAM100D1}
-	\caption{Latent variables of TCLGP for synthetic data. Left panel refers to no regularization and the other three have regularization with different weights $\lambda = 20, 50, 100$. Upper figures are plotted using the most two informative dimensions via $\bm\theta_0$ and Lower figures are plotted using the most two informative dimensions via $\bm\theta_1$. Different colors denote different observations and crosses denote inducing inputs.}
+	\caption{Latent variables of TCLGP for synthetic data. Left panel refers to no regularization and the other three have regularization with different weights $\lambda = 20, 50, 100$. Upper figures are plotted using the two most informative dimensions via $\bm\theta_0$ and lower figures are plotted using the two most informative dimensions via $\bm\theta_1$. Different colors denote distinct observable categories and crosses denote inducing inputs.}
 	\label{fig:SIM}
 \end{figure}
 
@@ -292,7 +292,7 @@ take the last data point for testing. We train our model using ARD kernels for a
 		\hline
 		ELBO & -1547.31  & -1596.53 & -1594.00 & -1620.63 \\
 		\hline
-		MELBO &  & -1607.08 & -1603.44 & -1629.49 \\
+		MELBO & -1547.31 & -1607.08 & -1603.44 & -1629.49 \\
 		\hline
 	\end{tabular}
 	\caption{Evidence lower bound (ELBO) and modified evidence lower bound (MELBO) of GPLVMs with and without regularization for synthetic categorical time series.}
@@ -302,33 +302,38 @@ take the last data point for testing. We train our model using ARD kernels for a
 \subsection{Stock Index}
 In this section, we apply the TCLGP model with regularization to a real data set of stock indices.
 
-We focus on three indices, the SP500, the Nikkei225, and the DAX. Index records are from 6 January 1965 to 5 December 2012. We use the same data as in \cite{Joao_2014}, but we take monthly stock indices and treat each year as an independent time series. Letting $\bm y_{nd}$ be monthly stock values for the $n$th year's and the $d$th stock indices, we have $48$ annual time series, where each time series contains three stock indices for 12 months. We pre-process the data by evenly splitting the monthly return rates into five categories, via $20\%, 40\%, 60\%, 80\%$ quantiles, shown in Table~\ref{quan}. Categories 1-5 represent bear, slight bear, normal, slight bull and bull markets. For each time series we randomly select one month as the testing data and treat the remaining data as the training data.
+We focus on three indices, the SP500, the Nikkei225, and the DAX. Index records are from January 6, 1965 to December 5, 2012. We use the same data as in \cite{Joao_2014}, but we take monthly stock indices and treat each year as an independent time series. Letting $\bm y_{nd}$ be monthly stock values for the $n$th year's and the $d$th stock indices, we have $48$ annual time series, where each time series contains three stock indices for 12 months. We pre-process the data by evenly splitting the monthly return rates into five levels, via $20\%, 40\%, 60\%, 80\%$ quantiles.
+%, shown in Table~\ref{quan}
+%
+Levels 1-5 represent bear, slight bear, normal, slight bull and bull markets. For each time series we randomly select one month as the testing data and treat the remaining data as the training data.
 
-\begin{table}[ht!]
-	\centering
-	\begin{tabular}{|c|c|c|c|c|c|c|}
-		\hline
-		& 0\% & 20\% & 40\% & 60\% & 80\% & 100\% \\
-		\hline
-		SP500 & -21.9 & -2.5 & -0.1 & 1.8 & 3.7 & 16.5 \\
-		\hline
-		Nikkei225 & -19.8 & -3.9 & -0.5 & 2.2 & 4.8 & 20.1 \\
-		\hline
-		DAX & -23.4 & -3.5 & -0.4 & 2.1 & 5 & 21.9 \\
-		\hline
-	\end{tabular}
-    \caption{Percentiles of return rate for three stock indices from 1965 to 2012.}
-	\label{quan}
-\end{table}
+%\begin{table}[ht!]
+%	\centering
+%	\begin{tabular}{|c|c|c|c|c|c|c|}
+%		\hline
+%		& 0\% & 20\% & 40\% & 60\% & 80\% & 100\% \\
+%		\hline
+%		SP500 & -21.9 & -2.5 & -0.1 & 1.8 & 3.7 & 16.5 \\
+%		\hline
+%		Nikkei225 & -19.8 & -3.9 & -0.5 & 2.2 & 4.8 & 20.1 \\
+%		\hline
+%		DAX & -23.4 & -3.5 & -0.4 & 2.1 & 5 & 21.9 \\
+%		\hline
+%	\end{tabular}
+%    \caption{Percentiles of return rate for three stock indices from 1965 to 2012.}
+%	\label{quan}
+%\end{table}
 
 \subsubsection{Hyper-parameter Analysis}
-In this dataset, the model is sensitive to the hyper-parameters of the GP of the latent function prior. We fixed the hyper-parameters and optimized the other model parameters with regularization. We take $M = 20$ and assume the same $\bm \phi$ for each dimension $q$. We try different settings of $\bm \phi$ and set $\lambda =20$ using  the rule of thumb. Model fitting is illustrated using MELBO and model prediction is demonstrated using training/testing predictive accuracy and  mean absolute difference in Table~\ref{tab:STOCK}, where predictive accuracy and mean absolute difference for training and testing are defined as 
+In this dataset, the model is sensitive to the hyper-parameters of the GP of the latent function prior. We fixed the hyper-parameters and optimized the other model parameters with regularization. We take $M = 20$ and assume the same $\bm \phi$ for each dimension $q$. We try different settings of $\bm \phi$ and set $\lambda =20$ using  the rule of thumb. We evaluate model fit using the MELBO. Predictive performance is evaluated using training/testing predictive accuracy (TRPA/TPA) and training/testing mean absolute difference (TRMAD/TMAD), which are defined as follows:
 \begin{eqnarray}
-\mathrm{TRPA} & = & \frac{\sum_{n = 1}^{N}\sum_{t = 1}^{T-1}\bm 1(\bm y^{train}_{n\cdot t} = \hat{\bm y}^{train}_{n\cdot t})}{N(T-1)} \,, \nonumber \\
-\mathrm{TRMDA} & = & \frac{\sum_{n = 1}^{N}\sum_{d = 1}^{D}\sum_{t=1}^{T-1}|y^{train}_{ndt}-\hat{y}^{train}_{ndt}|}{NDT} \,, \nonumber \\
-\mathrm{TPA} & = & \frac{\sum_{n = 1}^{N}\bm 1(\bm y^{test}_{n\cdot} = \hat{\bm y}^{test}_{n\cdot})}{N} \,, \nonumber \\
-\mathrm{TMDA} & = & \frac{\sum_{n = 1}^{N}\sum_{d = 1}^{D}|y^{test}_{nd}-\hat{y}^{test}_{nd}|}{ND} \,. \nonumber
+\mathrm{TRPA} & = & \frac{1}{N(T-1)}\sum_{n = 1}^{N}\sum_{t = 1}^{T-1}\bm 1(\bm y^{train}_{n\cdot t} = \hat{\bm y}^{train}_{n\cdot t}) \,, \nonumber \\
+\mathrm{TRMDA} & = & \frac{1}{ND(T-1)}\sum_{n = 1}^{N}\sum_{d = 1}^{D}\sum_{t=1}^{T-1}|y^{train}_{ndt}-\hat{y}^{train}_{ndt}| \,, \nonumber \\
+\mathrm{TPA} & = & \frac{1}{N}\sum_{n = 1}^{N}\bm 1(\bm y^{test}_{n\cdot} = \hat{\bm y}^{test}_{n\cdot}) \,, \nonumber \\
+\mathrm{TMDA} & = & \frac{1}{ND}\sum_{n = 1}^{N}\sum_{d = 1}^{D}|y^{test}_{nd}-\hat{y}^{test}_{nd}| \,. \nonumber
 \end{eqnarray} 
+%
+Results can be found in Table~\ref{tab:STOCK}.
 
 \begin{table}[ht!]
 	\centering
@@ -349,7 +354,7 @@ In this dataset, the model is sensitive to the hyper-parameters of the GP of the
 		TMAD & 1.53 & \textbf{1.45} & 1.65 & 1.53 & 1.53 & 1.65 \\
 		\hline
 	\end{tabular}
-    \caption{Model fitting and prediction results of TCLGP with regularization under different settings of hyper-parameters. We evaluate model fitting by modified evidence lower bound (MELBO) and evaluate model prediction by training predictive accuracy (TRPA), training mean absolute difference (TRMAD), testing predictive accuracy(TRA) and testing mean absolute difference (TMAD).}
+    \caption{Model fitting and prediction results of TCLGP with regularization under different settings of hyper-parameters. We evaluate model fitting by modified evidence lower bound (MELBO) and evaluate model prediction by training predictive accuracy (TRPA), training mean absolute difference (TRMAD), testing predictive accuracy (TRA) and testing mean absolute difference (TMAD).}
 	\label{tab:STOCK}
 \end{table}
 

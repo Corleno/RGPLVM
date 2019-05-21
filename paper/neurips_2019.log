@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.4.23)  21 MAY 2019 03:42
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.4.23)  21 MAY 2019 16:02
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -902,37 +902,32 @@ File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <10> not available
 (Font)              Font shape `T1/ptm/b/n' tried instead on input line 81.
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 81.
 
-(/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
-File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-)
-Package microtype Info: Loading generic protrusion settings for font family
-(microtype)             `cmtt' (encoding: T1).
-(microtype)             For optimal results, create family-specific settings.
-(microtype)             See the microtype manual for details.
+
+LaTeX Warning: No \author given.
+
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <12> not available
 (Font)              Font shape `T1/ptm/b/n' tried instead on input line 83.
- [1
+[1
 
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-<pic/1D_sim_SVGP_Fixed_Z0.png, id=138, 462.528pt x 346.896pt>
+<pic/1D_sim_SVGP_Fixed_Z0.png, id=139, 462.528pt x 346.896pt>
 File: pic/1D_sim_SVGP_Fixed_Z0.png Graphic file (type png)
 <use pic/1D_sim_SVGP_Fixed_Z0.png>
 Package pdftex.def Info: pic/1D_sim_SVGP_Fixed_Z0.png  used on input line 108.
 (pdftex.def)             Requested size: 95.39857pt x 71.54817pt.
-<pic/1D_sim_SVGP_Fixed_Z1.png, id=140, 462.528pt x 346.896pt>
+<pic/1D_sim_SVGP_Fixed_Z1.png, id=141, 462.528pt x 346.896pt>
 File: pic/1D_sim_SVGP_Fixed_Z1.png Graphic file (type png)
 <use pic/1D_sim_SVGP_Fixed_Z1.png>
 Package pdftex.def Info: pic/1D_sim_SVGP_Fixed_Z1.png  used on input line 109.
 (pdftex.def)             Requested size: 95.39857pt x 71.54817pt.
-<pic/1D_sim_SVGP_Fixed_Z2.png, id=141, 462.528pt x 346.896pt>
+<pic/1D_sim_SVGP_Fixed_Z2.png, id=142, 462.528pt x 346.896pt>
 File: pic/1D_sim_SVGP_Fixed_Z2.png Graphic file (type png)
 <use pic/1D_sim_SVGP_Fixed_Z2.png>
 Package pdftex.def Info: pic/1D_sim_SVGP_Fixed_Z2.png  used on input line 110.
 (pdftex.def)             Requested size: 95.39857pt x 71.54817pt.
-<pic/1D_sim_SVGP_Fixed_Z5.png, id=142, 462.528pt x 346.896pt>
+<pic/1D_sim_SVGP_Fixed_Z5.png, id=143, 462.528pt x 346.896pt>
 File: pic/1D_sim_SVGP_Fixed_Z5.png Graphic file (type png)
 <use pic/1D_sim_SVGP_Fixed_Z5.png>
 Package pdftex.def Info: pic/1D_sim_SVGP_Fixed_Z5.png  used on input line 111.
@@ -955,8 +950,19 @@ l.218 \end{eqnarray}
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.218 \end{eqnarray}
-                    ] [5pdfTeX warning (ext4): destination with the same identi
-fier (name{equation.4.6}) has been already used, duplicate ignored
+                    ]
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 244.
+
+ (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
+File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `cmtt' (encoding: T1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+
+[5pdfTeX warning (ext4): destination with the same identifier (name{equation.4.
+6}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
@@ -1034,61 +1040,54 @@ File: pic/LAM100D1.png Graphic file (type png)
 <use pic/LAM100D1.png>
 Package pdftex.def Info: pic/LAM100D1.png  used on input line 282.
 (pdftex.def)             Requested size: 95.39857pt x 71.54817pt.
-
-Underfull \vbox (badness 5036) has occurred while \output is active []
-
  [6 <./pic/VBGPLVM.png> <./pic/RVBGPLVM_LAM20.png> <./pic/RVBGPLVM_LAM50.png> <
-./pic/RVBGPLVM_LAM100.png>]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [7 <./pic/LAM0D0.png> <./pic/LAM20D0.png> <./pic/LAM50D0.png> <./pic/LAM100D0.
-png> <./pic/LAM0D1.png> <./pic/LAM20D1.png> <./pic/LAM50D1.png> <./pic/LAM100D1
-.png>]
-<pic/2008year_cat.png, id=279, 433.62pt x 289.08pt>
+./pic/RVBGPLVM_LAM100.png>] [7 <./pic/LAM0D0.png> <./pic/LAM20D0.png> <./pic/LA
+M50D0.png> <./pic/LAM100D0.png> <./pic/LAM0D1.png> <./pic/LAM20D1.png> <./pic/L
+AM50D1.png> <./pic/LAM100D1.png>]
+<pic/2008year_cat.png, id=278, 433.62pt x 289.08pt>
 File: pic/2008year_cat.png Graphic file (type png)
 <use pic/2008year_cat.png>
-Package pdftex.def Info: pic/2008year_cat.png  used on input line 367.
+Package pdftex.def Info: pic/2008year_cat.png  used on input line 372.
 (pdftex.def)             Requested size: 95.39857pt x 63.5978pt.
-<pic/year2008_D0.png, id=280, 433.62pt x 289.08pt>
+<pic/year2008_D0.png, id=279, 433.62pt x 289.08pt>
 File: pic/year2008_D0.png Graphic file (type png)
 <use pic/year2008_D0.png>
-Package pdftex.def Info: pic/year2008_D0.png  used on input line 370.
+Package pdftex.def Info: pic/year2008_D0.png  used on input line 375.
 (pdftex.def)             Requested size: 95.39857pt x 63.5978pt.
-<pic/year2008_D1.png, id=281, 433.62pt x 289.08pt>
+<pic/year2008_D1.png, id=280, 433.62pt x 289.08pt>
 File: pic/year2008_D1.png Graphic file (type png)
 <use pic/year2008_D1.png>
-Package pdftex.def Info: pic/year2008_D1.png  used on input line 373.
+Package pdftex.def Info: pic/year2008_D1.png  used on input line 378.
 (pdftex.def)             Requested size: 95.39857pt x 63.5978pt.
-<pic/year2008_trace.png, id=282, 433.62pt x 289.08pt>
+<pic/year2008_trace.png, id=281, 433.62pt x 289.08pt>
 File: pic/year2008_trace.png Graphic file (type png)
 <use pic/year2008_trace.png>
-Package pdftex.def Info: pic/year2008_trace.png  used on input line 376.
+Package pdftex.def Info: pic/year2008_trace.png  used on input line 381.
 (pdftex.def)             Requested size: 95.39857pt x 63.5978pt.
-<pic/2009year_cat.png, id=283, 433.62pt x 289.08pt>
+<pic/2009year_cat.png, id=282, 433.62pt x 289.08pt>
 File: pic/2009year_cat.png Graphic file (type png)
 <use pic/2009year_cat.png>
-Package pdftex.def Info: pic/2009year_cat.png  used on input line 379.
+Package pdftex.def Info: pic/2009year_cat.png  used on input line 384.
 (pdftex.def)             Requested size: 95.39857pt x 63.5978pt.
-<pic/year2009_D0.png, id=284, 433.62pt x 289.08pt>
+<pic/year2009_D0.png, id=283, 433.62pt x 289.08pt>
 File: pic/year2009_D0.png Graphic file (type png)
 <use pic/year2009_D0.png>
-Package pdftex.def Info: pic/year2009_D0.png  used on input line 382.
+Package pdftex.def Info: pic/year2009_D0.png  used on input line 387.
 (pdftex.def)             Requested size: 95.39857pt x 63.5978pt.
-<pic/year2009_D1.png, id=285, 433.62pt x 289.08pt>
+<pic/year2009_D1.png, id=284, 433.62pt x 289.08pt>
 File: pic/year2009_D1.png Graphic file (type png)
 <use pic/year2009_D1.png>
-Package pdftex.def Info: pic/year2009_D1.png  used on input line 385.
+Package pdftex.def Info: pic/year2009_D1.png  used on input line 390.
 (pdftex.def)             Requested size: 95.39857pt x 63.5978pt.
-<pic/year2009_trace.png, id=286, 433.62pt x 289.08pt>
+<pic/year2009_trace.png, id=285, 433.62pt x 289.08pt>
 File: pic/year2009_trace.png Graphic file (type png)
 <use pic/year2009_trace.png>
-Package pdftex.def Info: pic/year2009_trace.png  used on input line 388.
+Package pdftex.def Info: pic/year2009_trace.png  used on input line 393.
 (pdftex.def)             Requested size: 95.39857pt x 63.5978pt.
-
-[8 <./pic/2008year_cat.png> <./pic/year2008_D0.png> <./pic/year2008_D1.png> <./
-pic/year2008_trace.png> <./pic/2009year_cat.png> <./pic/year2009_D0.png> <./pic
-/year2009_D1.png> <./pic/year2009_trace.png>] (./neurips_2019.bbl [9]) [10]
-(./appendix.tex
+ (./neurips_2019.bbl [8 <./pic/2008year_cat.png> <./pic/year2008_D0.png> <./pic
+/year2008_D1.png> <./pic/year2008_trace.png> <./pic/2009year_cat.png> <./pic/ye
+ar2009_D0.png> <./pic/year2009_D1.png> <./pic/year2009_trace.png>] [9]) [10] (.
+/appendix.tex
 Overfull \hbox (36.38402pt too wide) in alignment at lines 43--54
  [][][] []
  []
@@ -1147,26 +1146,26 @@ Overfull \hbox (3.41931pt too wide) in alignment at lines 70--75
  []
 
 )
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 453.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 458.
  [12]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 453.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 458.
  (./neurips_2019.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 453.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 453.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 458.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 458.
 Package rerunfilecheck Info: File `neurips_2019.out' has not changed.
 (rerunfilecheck)             Checksum: FA02D3308093BE3D80D15D45A086F0D4;1182.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 453.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 458.
  ) 
 Here is how much of TeX's memory you used:
- 11612 strings out of 492982
- 176187 string characters out of 6134896
- 317547 words of memory out of 5000000
- 14723 multiletter control sequences out of 15000+600000
+ 11610 strings out of 492982
+ 176162 string characters out of 6134896
+ 316842 words of memory out of 5000000
+ 14722 multiletter control sequences out of 15000+600000
  43306 words of font info for 168 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 36i,15n,39p,1625b,460s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/share/texmf/
-fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texlive/texmf-dist/fonts/t
+ 36i,15n,39p,1625b,466s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/share/texliv
+e/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/t
 ype1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
 ublic/amsfonts/cm/cmbx9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
 msfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
@@ -1193,10 +1192,10 @@ ve/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texmf/
 fonts/type1/public/cm-super/sftt1000.pfb></usr/share/texlive/texmf-dist/fonts/t
 ype1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/
 utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on neurips_2019.pdf (12 pages, 783866 bytes).
+Output written on neurips_2019.pdf (12 pages, 763973 bytes).
 PDF statistics:
- 460 PDF objects out of 1000 (max. 8388607)
- 365 compressed objects within 4 object streams
- 93 named destinations out of 1000 (max. 500000)
+ 458 PDF objects out of 1000 (max. 8388607)
+ 363 compressed objects within 4 object streams
+ 92 named destinations out of 1000 (max. 500000)
  24329 words of extra memory for PDF output out of 24883 (max. 10000000)
 
