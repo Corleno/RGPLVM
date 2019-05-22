@@ -1,0 +1,10 @@
+#!/bin/bash
+#SBATCH -t 10:00:00
+#SBATCH -p pbatch
+#SBATCH -N 1
+#SBATCH -n 1
+
+source ~/.bashrc
+
+srun python CLGP_T_SIM.py --reg 20. --Q 2
+

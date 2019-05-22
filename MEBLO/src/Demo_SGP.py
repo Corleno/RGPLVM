@@ -110,39 +110,39 @@ if __name__ == "__main__":
     # print(type(Z), Z)
     # lineplotCI(Xs, Ys, sorted_x, low_CI, mid_CI, upper_CI, x_label, y_label, title, save_dir = save_dir, save_name = save_name, Z = Z)
 
-    # SVGP_Fixed_0.5
-    name = "1D_sim_SVGP_Fixed_Z0"
-    Z_10 = np.linspace(0.25, 0.75, 10)[:,None]
-    print ("Z_10: {}".format(Z_10))
+    # # SVGP_Fixed_0.5
+    # name = "1D_sim_SVGP_Fixed_Z0"
+    # Z_10 = np.linspace(0.25, 0.75, 10)[:,None]
+    # print ("Z_10: {}".format(Z_10))
 
-    m = SVGP(X, Y, k, Gaussian(), Z_10)
-    m.likelihood.variance = 0.01
-    # print(m.as_pandas_table())
+    # m = SVGP(X, Y, k, Gaussian(), Z_10)
+    # m.likelihood.variance = 0.01
+    # # print(m.as_pandas_table())
 
-    # Optimization
-    m.compile()
-    opt= ScipyOptimizer()
-    opt.minimize(m, disp = False)
-    # print(m.as_pandas_table())
+    # # Optimization
+    # m.compile()
+    # opt= ScipyOptimizer()
+    # opt.minimize(m, disp = False)
+    # # print(m.as_pandas_table())
 
-    # Prediction
-    lik, rmse, ms, vs = batch_assess(m, assess_single_layer, Xs, Ys)
-    print("lik: {:.4f}, rmse:{:.4f}".format(lik,rmse))
-    # lik: 0.5226, rmse:0.1424
+    # # Prediction
+    # lik, rmse, ms, vs = batch_assess(m, assess_single_layer, Xs, Ys)
+    # print("lik: {:.4f}, rmse:{:.4f}".format(lik,rmse))
+    # # lik: 0.5226, rmse:0.1424
 
-    # Plot
-    low_CI = (ms - 1.96*vs**0.5).reshape(-1)
-    mid_CI = ms.reshape(-1)
-    upper_CI = (ms + 1.96*vs**0.5).reshape(-1)
-    sorted_x = Xs.reshape(-1)
-    x_label = " "
-    y_label = " "
-    title = None
-    save_dir="../res/"
-    save_name= name + ".png"
-    Z = m.feature.Z.read_value().reshape(-1)
-    print(type(Z), Z)
-    lineplotCI(Xs, Ys, sorted_x, low_CI, mid_CI, upper_CI, x_label, y_label, title, save_dir = save_dir, save_name = save_name, Z = Z)
+    # # Plot
+    # low_CI = (ms - 1.96*vs**0.5).reshape(-1)
+    # mid_CI = ms.reshape(-1)
+    # upper_CI = (ms + 1.96*vs**0.5).reshape(-1)
+    # sorted_x = Xs.reshape(-1)
+    # x_label = " "
+    # y_label = " "
+    # title = None
+    # save_dir="../res/"
+    # save_name= name + ".png"
+    # Z = m.feature.Z.read_value().reshape(-1)
+    # print(type(Z), Z)
+    # lineplotCI(Xs, Ys, sorted_x, low_CI, mid_CI, upper_CI, x_label, y_label, title, save_dir = save_dir, save_name = save_name, Z = Z)
 
 
     # # SVGP_Fixed_1
@@ -179,39 +179,39 @@ if __name__ == "__main__":
     # print(type(Z), Z)
     # lineplotCI(Xs, Ys, sorted_x, low_CI, mid_CI, upper_CI, x_label, y_label, title, save_dir = save_dir, save_name = save_name, Z = Z)
 
-    # # SVGP_Fixed_2
-    # name = "1D_sim_SVGP_Fixed_Z2"
-    # Z_10 = np.linspace(-0.5, 1.5, 10)[:,None]
-    # print ("Z_10: {}".format(Z_10))
+    # SVGP_Fixed_2
+    name = "1D_sim_SVGP_Fixed_Z2"
+    Z_10 = np.linspace(-0.5, 1.5, 10)[:,None]
+    print ("Z_10: {}".format(Z_10))
 
-    # m = SVGP(X, Y, k, Gaussian(), Z_10)
-    # m.likelihood.variance = 0.01
-    # # print(m.as_pandas_table())
+    m = SVGP(X, Y, k, Gaussian(), Z_10)
+    m.likelihood.variance = 0.01
+    # print(m.as_pandas_table())
 
-    # # Optimization
-    # m.compile()
-    # opt= ScipyOptimizer()
-    # opt.minimize(m, disp = False)
-    # # print(m.as_pandas_table())
+    # Optimization
+    m.compile()
+    opt= ScipyOptimizer()
+    opt.minimize(m, disp = False)
+    # print(m.as_pandas_table())
 
-    # # Prediction
-    # lik, rmse, ms, vs = batch_assess(m, assess_single_layer, Xs, Ys)
-    # print("lik: {:.4f}, rmse:{:.4f}".format(lik,rmse))
-    # # lik: 0.5400, rmse:0.1406
+    # Prediction
+    lik, rmse, ms, vs = batch_assess(m, assess_single_layer, Xs, Ys)
+    print("lik: {:.4f}, rmse:{:.4f}".format(lik,rmse))
+    # lik: 0.5400, rmse:0.1406
 
-    # # Plot
-    # low_CI = (ms - 1.96*vs**0.5).reshape(-1)
-    # mid_CI = ms.reshape(-1)
-    # upper_CI = (ms + 1.96*vs**0.5).reshape(-1)
-    # sorted_x = Xs.reshape(-1)
-    # x_label = " "
-    # y_label = " "
-    # title = None
-    # save_dir="../res/"
-    # save_name= name + ".png"
-    # Z = m.feature.Z.read_value().reshape(-1)
-    # print(type(Z), Z)
-    # lineplotCI(Xs, Ys, sorted_x, low_CI, mid_CI, upper_CI, x_label, y_label, title, save_dir = save_dir, save_name = save_name, Z = Z)
+    # Plot
+    low_CI = (ms - 1.96*vs**0.5).reshape(-1)
+    mid_CI = ms.reshape(-1)
+    upper_CI = (ms + 1.96*vs**0.5).reshape(-1)
+    sorted_x = Xs.reshape(-1)
+    x_label = " "
+    y_label = " "
+    title = None
+    save_dir="../res/"
+    save_name= name + ".png"
+    Z = m.feature.Z.read_value().reshape(-1)
+    print(type(Z), Z)
+    lineplotCI(Xs, Ys, sorted_x, low_CI, mid_CI, upper_CI, x_label, y_label, title, save_dir = save_dir, save_name = save_name, Z = Z)
 
     # # SVGP_Fixed_5
     # name = "1D_sim_SVGP_Fixed_Z5"
@@ -246,4 +246,4 @@ if __name__ == "__main__":
     # Z = m.feature.Z.read_value().reshape(-1)
     # print(type(Z), Z)
     # lineplotCI(Xs, Ys, sorted_x, low_CI, mid_CI, upper_CI, x_label, y_label, title, save_dir = save_dir, save_name = save_name, Z = Z)
-    # 
+    

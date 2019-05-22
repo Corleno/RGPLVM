@@ -10,6 +10,8 @@ import pandas as pd
 import tensorflow as tf
 import pickle
 import time
+import matplotlib
+matplotlib.use('agg')
 import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 import argparse
@@ -72,39 +74,58 @@ if __name__ == "__main__":
     # # print("true result:{}".format(Y_train[:,-1,:]))
     # print("accuracy:{}".format(np.mean(clgp_t.est_y_test==Y_train[:,-1,:])))
     
-    # predict test data
-    print("predict testing data")
-    clgp_t.predict_latent(T_test)
-    clgp_t.predict_categorical()
-    # print("predicted result:{}".format(clgp_t.est_y_test))
-    # print("true result:{}".format(Y_test))
-    pred_acc = np.mean(clgp_t.est_y_test==Y_test)
-    print("accuracy:{}".format(pred_acc))
+
+
+
+    # # predict test data
+    # print("predict testing data")
+    # clgp_t.predict_latent(T_test)
+    # clgp_t.predict_categorical()
+    # # print("predicted result:{}".format(clgp_t.est_y_test))
+    # # print("true result:{}".format(Y_test))
+    # pred_acc = np.mean(clgp_t.est_y_test==Y_test)
+    # print("accuracy:{}".format(pred_acc))
     
-    pred_acc_list = comm.gather(pred_acc, root=0)
-    if rank == 0:
-    	np.savetxt("../res/pred_acc_LAM{}_Q{}".format(args.reg, args.Q), np.asarray(pred_acc_list))
+    # pred_acc_list = comm.gather(pred_acc, root=0)
+    # if rank == 0:
+    	# np.savetxt("../res/pred_acc_LAM{}_Q{}".format(args.reg, args.Q), np.asarray(pred_acc_list))
+
+
+
 
     # predict individual 0 latent process
     # clgp_t.predict_latent_process(0, verbose=True)
     
-    # # plot latent space
-    # IPs = clgp_t.est_Z
-    # ms = clgp_t.est_m
-    # ms_2 = ms.reshape([-1, Q])
 
-    # labels = Y_train.reshape([-1, D])
-    # labels = (labels[:,0] * K[1] + labels[:, 1]).reshape(-1)
-    # colors = cm.rainbow(np.linspace(0,1,K[0]*K[1]))
 
-    # fig = plt.figure()
-    # for i, c in zip(np.unique(labels), colors):
-    #     plt.scatter(ms_2[labels==i,0], ms_2[labels==i,1], color = c, label = "{},{}".format(int(i/3),i%3))
-    #     plt.scatter(IPs[:,0], IPs[:,1], marker='x', label = "PI")
-    # # plt.legend()    
-    # plt.savefig("../res/latent_space_SIM_LAM{}.png".format(args.reg))
-    # plt.close(fig)
 
+
+    # plot latent space
+    est_l = clgp_t.est_theta[:,1:]
+    sens = 1./est_l
+    ## the large est_l denote the little variation in the dimension
+    sens_order = [np.argsort(sens[d,:]) for d in range(D)]
+    print(sens_order)
+
+    IPs = clgp_t.est_Z
+    ms = clgp_t.est_m
+    ms_2 = ms.reshape([-1, args.Q])
+    labels = Y_train.reshape([-1, D])
+    labels = (labels[:,0] * K[1] + labels[:, 1]).reshape(-1)
+    # print(ms_2.shape, labels.shape)
+    colors = cm.rainbow(np.linspace(0,1,K[0]*K[1]))
+    for d in range(D):
+        fig = plt.figure()
+        for i, c in zip(np.unique(labels), colors):
+            plt.scatter(ms_2[labels==i,sens_order[d][-1]], ms_2[labels==i,sens_order[d][-2]], color = c, label = "{},{}".format(int(i/3),i%3))
+            plt.scatter(IPs[:,sens_order[d][-1]], IPs[:,sens_order[d][-2]], marker='x', label = "PI")
+            plt.xlim(-5,5)
+            plt.ylim(-5,5)
+        # plt.legend()    
+        plt.savefig("../res/latent_space_SIM_LAM{}_D{}.png".format(args.reg, d))
+        plt.close(fig)
+        with open("../res/latent_space_SIM_LAM{}_D{}.pickle".format(args.reg, d), "wb") as res:
+            pickle.dump([ms_2, IPs, labels, colors, sens_order], res)
 
 
         

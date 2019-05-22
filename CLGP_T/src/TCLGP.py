@@ -5,6 +5,7 @@
 # 05/17/2019
 import numpy as np
 import tensorflow as tf
+import tensorflow_probability as tfp
 import matplotlib.pyplot as plt
 
 
@@ -121,7 +122,7 @@ class CLGP_T():
             # self.phi = tf.constant(np.tile([[1,0.1]],[self.Q,1]), dtype=tf.float32)
 
         tf.set_random_seed(1234)
-        tfd = tf.contrib.distributions
+        tfd = tfp.distributions
 
         cov_mat_x_list = []
         for q in range(self.Q):
@@ -309,11 +310,12 @@ class CLGP_T():
         # Training with KL annealing
         for epoch in range(self.training_epochs):
             self.sess.run(self.train, feed_dict={self.lamb: lamb})
-            # if epoch % display_step == 0:
-            #     # print training information
-            #     lamb0, elbo0, theta0, phi0, Z0, KL_U0, KL_X0, KL_ZX0, Comp_F0, summary = self.sess.run([self.lamb, self.elbo, self.theta, self.phi, self.Z, self.KL_U, self.KL_X, self.KL_ZX, self.Comp_F, self.summ], feed_dict={self.lamb: lamb})
+            if epoch % display_step == 0:
+                print("{} epochs have been completed.".format(epoch))
+                # print training information
+                lamb0, elbo0, theta0, phi0, Z0, KL_U0, KL_X0, KL_ZX0, Comp_F0, summary = self.sess.run([self.lamb, self.elbo, self.theta, self.phi, self.Z, self.KL_U, self.KL_X, self.KL_ZX, self.Comp_F, self.summ], feed_dict={self.lamb: lamb})
             #     print("Epoch: {}".format(epoch+1))
-            #     print("elbo: {}, F: {}, KL_U:{}, KL_X:{}, KL_ZX:{}, phi:{}".format(elbo0, Comp_F0, KL_U0, KL_X0, KL_ZX0, phi0))
+                print("elbo: {}, F: {}, KL_U:{}, KL_X:{}, KL_ZX:{}, phi:{}".format(elbo0, Comp_F0, KL_U0, KL_X0, KL_ZX0, phi0))
             # writer.add_summary(summary, epoch)
             lamb = min(1, lamb_inc+lamb)
             # elbo_hist.append(elbo0)

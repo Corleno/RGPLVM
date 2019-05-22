@@ -26,6 +26,7 @@ def lineplotCI(x_data, y_data, sorted_x, low_CI, mid_CI, upper_CI, x_label, y_la
         ax.set_title(title)
     ax.set_xlabel(x_label)
     ax.set_ylabel(y_label)
+    ax.set_xlim(sorted_x[0], sorted_x[-1])
 
     # Display legend
     ax.legend(loc = 'best')

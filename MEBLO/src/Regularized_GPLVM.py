@@ -165,9 +165,8 @@ def VBGPLVM_model(name, Q = 10, M = 20, verbose = False):
         plt.savefig("../res/test/VBGPLVM.png")
         loglik = VBGPLVM.compute_log_likelihood()
         np.savetxt("../res/test/VBGPLVM.csv", np.asarray([loglik]))
-  
-    # with open("../res/{}_vbgplvm_Q{}_M{}.pickle".format(name, Q, M), "wb") as res:
-    #     pickle.dump(VBGPLVM.X_mean.read_value(), res)
+    with open("../res/{}_vbgplvm_Q{}_M{}.pickle".format(name, Q, M), "wb") as res:
+        pickle.dump([VBGPLVM.X_mean.read_value(), VBGPLVM.feature.Z.read_value(), labels, colors, sens_order], res)
 
     return VBGPLVM, sens
 
@@ -269,8 +268,8 @@ def RVBGPLVM_model(name, Q = 10, M = 20, lamb = 20, verbose = False):
         loglik = RVBGPLVM.compute_log_likelihood()
         np.savetxt("../res/test/RVBGPLVM_LAM{}.csv".format(lamb), np.asarray([loglik]))
   
-    # with open("../res/{}_rvbgplvm_Q{}_M{}.pickle".format(name, Q, M), "wb") as res:
-    #     pickle.dump(RVBGPLVM.X_mean.read_value(), res)
+    with open("../res/{}_rvbgplvm_Q{}_M{}_LAM{}.pickle".format(name, Q, M, lamb), "wb") as res:
+        pickle.dump([RVBGPLVM.X_mean.read_value(), RVBGPLVM.feature.Z.read_value(), labels, colors, sens_order], res)
 
 
     return RVBGPLVM, sens
@@ -324,8 +323,8 @@ if __name__ == "__main__":
     # RBGPLVM_sens_order = np.argsort(RBGPLVM_sens)    
 
     # # Regularized VBGPLVM
-    RVBGPLVM_10, RVBGPLVM_10_sens = RVBGPLVM_model(name, Q = Q, M = M, lamb = 10, verbose = True)
-    RVBGPLVM_10_sens_order = np.argsort(RVBGPLVM_10_sens)    
+    # RVBGPLVM_10, RVBGPLVM_10_sens = RVBGPLVM_model(name, Q = Q, M = M, lamb = 10, verbose = True)
+    # RVBGPLVM_10_sens_order = np.argsort(RVBGPLVM_10_sens)    
     # Regularized VBGPLVM
     RVBGPLVM_20, RVBGPLVM_20_sens = RVBGPLVM_model(name, Q = Q, M = M, lamb = 20, verbose = True)
     RVBGPLVM_20_sens_order = np.argsort(RVBGPLVM_20_sens)    

@@ -1,0 +1,8 @@
+#!/bin/bash
+#BSUB -q pbatch
+#BSUB -nnodes 1
+#BSUB -G guests
+
+source ~/.ray/.bash_profile
+
+bsub python CLGP_T_SIM.py --reg 50. --Q 2  
