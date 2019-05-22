@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.4.23)  21 MAY 2019 21:43
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.4.23)  21 MAY 2019 23:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1044,133 +1044,120 @@ Package pdftex.def Info: pic/LAM100D1.png  used on input line 282.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [6 <./pic/VBGPLVM.png> <./pic/RVBGPLVM_LAM20.png> <./pic/RVBGPLVM_LAM50.png> <
-./pic/RVBGPLVM_LAM100.png>]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [7 <./pic/LAM0D0.png> <./pic/LAM20D0.png> <./pic/LAM50D0.png> <./pic/LAM100D0.
-png> <./pic/LAM0D1.png> <./pic/LAM20D1.png> <./pic/LAM50D1.png> <./pic/LAM100D1
-.png>]
-<pic/2008year_cat.png, id=276, 433.62pt x 289.08pt>
+./pic/RVBGPLVM_LAM100.png>] [7 <./pic/LAM0D0.png> <./pic/LAM20D0.png> <./pic/LA
+M50D0.png> <./pic/LAM100D0.png> <./pic/LAM0D1.png> <./pic/LAM20D1.png> <./pic/L
+AM50D1.png> <./pic/LAM100D1.png>]
+<pic/2008year_cat.png, id=286, 433.62pt x 289.08pt>
 File: pic/2008year_cat.png Graphic file (type png)
 <use pic/2008year_cat.png>
-Package pdftex.def Info: pic/2008year_cat.png  used on input line 372.
+Package pdftex.def Info: pic/2008year_cat.png  used on input line 374.
 (pdftex.def)             Requested size: 95.39857pt x 63.5978pt.
-<pic/year2008_D0.png, id=277, 433.62pt x 289.08pt>
+<pic/year2008_D0.png, id=287, 433.62pt x 289.08pt>
 File: pic/year2008_D0.png Graphic file (type png)
 <use pic/year2008_D0.png>
-Package pdftex.def Info: pic/year2008_D0.png  used on input line 375.
+Package pdftex.def Info: pic/year2008_D0.png  used on input line 377.
 (pdftex.def)             Requested size: 95.39857pt x 63.5978pt.
-<pic/year2008_D1.png, id=278, 433.62pt x 289.08pt>
+<pic/year2008_D1.png, id=288, 433.62pt x 289.08pt>
 File: pic/year2008_D1.png Graphic file (type png)
 <use pic/year2008_D1.png>
-Package pdftex.def Info: pic/year2008_D1.png  used on input line 378.
+Package pdftex.def Info: pic/year2008_D1.png  used on input line 380.
 (pdftex.def)             Requested size: 95.39857pt x 63.5978pt.
-<pic/year2008_trace.png, id=279, 433.62pt x 289.08pt>
+<pic/year2008_trace.png, id=289, 433.62pt x 289.08pt>
 File: pic/year2008_trace.png Graphic file (type png)
 <use pic/year2008_trace.png>
-Package pdftex.def Info: pic/year2008_trace.png  used on input line 381.
+Package pdftex.def Info: pic/year2008_trace.png  used on input line 383.
 (pdftex.def)             Requested size: 95.39857pt x 63.5978pt.
-<pic/2009year_cat.png, id=280, 433.62pt x 289.08pt>
+<pic/2009year_cat.png, id=290, 433.62pt x 289.08pt>
 File: pic/2009year_cat.png Graphic file (type png)
 <use pic/2009year_cat.png>
-Package pdftex.def Info: pic/2009year_cat.png  used on input line 384.
+Package pdftex.def Info: pic/2009year_cat.png  used on input line 386.
 (pdftex.def)             Requested size: 95.39857pt x 63.5978pt.
-<pic/year2009_D0.png, id=281, 433.62pt x 289.08pt>
+<pic/year2009_D0.png, id=291, 433.62pt x 289.08pt>
 File: pic/year2009_D0.png Graphic file (type png)
 <use pic/year2009_D0.png>
-Package pdftex.def Info: pic/year2009_D0.png  used on input line 387.
+Package pdftex.def Info: pic/year2009_D0.png  used on input line 389.
 (pdftex.def)             Requested size: 95.39857pt x 63.5978pt.
-<pic/year2009_D1.png, id=282, 433.62pt x 289.08pt>
+<pic/year2009_D1.png, id=292, 433.62pt x 289.08pt>
 File: pic/year2009_D1.png Graphic file (type png)
 <use pic/year2009_D1.png>
-Package pdftex.def Info: pic/year2009_D1.png  used on input line 390.
+Package pdftex.def Info: pic/year2009_D1.png  used on input line 392.
 (pdftex.def)             Requested size: 95.39857pt x 63.5978pt.
-<pic/year2009_trace.png, id=283, 433.62pt x 289.08pt>
+<pic/year2009_trace.png, id=293, 433.62pt x 289.08pt>
 File: pic/year2009_trace.png Graphic file (type png)
 <use pic/year2009_trace.png>
-Package pdftex.def Info: pic/year2009_trace.png  used on input line 393.
+Package pdftex.def Info: pic/year2009_trace.png  used on input line 395.
 (pdftex.def)             Requested size: 95.39857pt x 63.5978pt.
+ [8 <./pic/2008year_cat.png> <./pic/year2008_D0.png> <./pic/year2008_D1.png> <.
+/pic/year2008_trace.png> <./pic/2009year_cat.png> <./pic/year2009_D0.png> <./pi
+c/year2009_D1.png> <./pic/year2009_trace.png>]
+(./neurips_2019.bbl [9]) [10] (./appendix.tex
+LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <9> not available
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 7.
 
-(./neurips_2019.bbl [8] [9 <./pic/2008year_cat.png> <./pic/year2008_D0.png> <./
-pic/year2008_D1.png> <./pic/year2008_trace.png> <./pic/2009year_cat.png> <./pic
-/year2009_D0.png> <./pic/year2009_D1.png> <./pic/year2009_trace.png>]) [10]
-(./appendix.tex
-Overfull \hbox (36.38402pt too wide) in alignment at lines 43--54
+Overfull \hbox (36.38402pt too wide) in alignment at lines 44--55
  [][][] []
  []
 
-[11pdfTeX warning (ext4): destination with the same identifier (name{equation.A
-.7}) has been already used, duplicate ignored
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [11pdfTeX warning (ext4): destination with the same identifier (name{equation.
+A.7}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.57 	T
-       herefore, $ M\mathrm{KL}(q_Z || q_X) = \frac{1}{2}\sum_{m = 1}^{M}\le...
-pdfTeX warning (ext4): destination with the same identifier (name{equation.A.7}
-) has been already used, duplicate ignored
+l.55 		\end{eqnarray}
+                     pdfTeX warning (ext4): destination with the same identifie
+r (name{equation.A.7}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.57 	T
-       herefore, $ M\mathrm{KL}(q_Z || q_X) = \frac{1}{2}\sum_{m = 1}^{M}\le...
-pdfTeX warning (ext4): destination with the same identifier (name{equation.A.7}
-) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.57 	T
-       herefore, $ M\mathrm{KL}(q_Z || q_X) = \frac{1}{2}\sum_{m = 1}^{M}\le...
-]
-Underfull \hbox (badness 5533) in paragraph at lines 57--58
-[]\T1/ptm/m/it/10 (+20) Therefore, $\OML/cmm/m/it/10 M[]\OT1/cmr/m/n/10 (\OML/c
-mm/m/it/10 q[]\OMS/cmsy/m/n/10 jj\OML/cmm/m/it/10 q[]\OT1/cmr/m/n/10 ) = [] [][
-] [] =
- []
-
-pdfTeX warning (ext4): destination with the same identifier (name{equation.A.7}
-) has been already used, duplicate ignored
+l.55 		\end{eqnarray}
+                     ]pdfTeX warning (ext4): destination with the same identifi
+er (name{equation.A.7}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.66 	\begin{eqnarray}
+l.67 	\begin{eqnarray}
                       pdfTeX warning (ext4): destination with the same identifi
 er (name{equation.A.7}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.66 	\begin{eqnarray}
+l.67 	\begin{eqnarray}
                       pdfTeX warning (ext4): destination with the same identifi
 er (name{equation.A.7}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.66 	\begin{eqnarray}
+l.67 	\begin{eqnarray}
                       pdfTeX warning (ext4): destination with the same identifi
 er (name{equation.A.7}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.66 	\begin{eqnarray}
-                      
-Overfull \hbox (3.41931pt too wide) in alignment at lines 70--75
- [][][] []
- []
+l.67 	\begin{eqnarray}
+                       [12pdfTeX warning (ext4): destination with the same iden
+tifier (name{equation.A.7}) has been already used, duplicate ignored
 
-)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 458.
- [12]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 458.
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.88 \end{eqnarray}
+                   ])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 460.
+ [13]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 460.
  (./neurips_2019.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 458.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 458.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 460.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 460.
 Package rerunfilecheck Info: File `neurips_2019.out' has not changed.
 (rerunfilecheck)             Checksum: FA02D3308093BE3D80D15D45A086F0D4;1182.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 458.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 460.
  ) 
 Here is how much of TeX's memory you used:
- 11610 strings out of 492982
- 176162 string characters out of 6134896
- 317223 words of memory out of 5000000
- 14722 multiletter control sequences out of 15000+600000
- 43306 words of font info for 168 fonts, out of 8000000 for 9000
+ 11692 strings out of 492982
+ 176916 string characters out of 6134896
+ 318223 words of memory out of 5000000
+ 14727 multiletter control sequences out of 15000+600000
+ 51373 words of font info for 221 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 36i,15n,39p,1625b,458s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,15n,39p,1625b,468s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/share/texliv
 e/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/t
 ype1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
@@ -1196,13 +1183,14 @@ pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></u
 sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texli
 ve/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texmf/
-fonts/type1/public/cm-super/sftt1000.pfb></usr/share/texlive/texmf-dist/fonts/t
-ype1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/
-utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on neurips_2019.pdf (12 pages, 766494 bytes).
+fonts/type1/public/cm-super/sftt0900.pfb></usr/share/texmf/fonts/type1/public/c
+m-super/sftt1000.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8
+a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/sha
+re/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on neurips_2019.pdf (13 pages, 801115 bytes).
 PDF statistics:
- 458 PDF objects out of 1000 (max. 8388607)
- 363 compressed objects within 4 object streams
- 92 named destinations out of 1000 (max. 500000)
- 24329 words of extra memory for PDF output out of 24883 (max. 10000000)
+ 469 PDF objects out of 1000 (max. 8388607)
+ 372 compressed objects within 4 object streams
+ 93 named destinations out of 1000 (max. 500000)
+ 27401 words of extra memory for PDF output out of 29859 (max. 10000000)
 
