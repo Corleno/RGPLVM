@@ -91,9 +91,9 @@ Although the GP is flexible, its exact inference is expensive with time complexi
 
 The Gaussian process latent variable model (GPLVM) \citep{Lawrence_2003} is proposed by Lawrence as a probabilistic dimensionality reduction method. This method extends the linear mappings from embedding space in dual probabilistic principle component analysis (DPPCA) to nonlinear mappings \citep{Lawrence_2003, Lawrence_2005}. \cite{Lawrence_2005} also discusses its relationship with other dimensionality reduction methods such as Multidimensional Scaling \citep{Mardia_1979} and Kernel PCA \citep{Scholkopf_1998}. Due to the poor scaling property, \cite{Titsias_2010} proposes Bayesian GPLVM using variational inference on a SGP in \cite{Titsias_2009}. And \cite{Hensman_2013} proposes stochastic variational inference on a latent SGP. Many variants of GPLVM are studied in \cite{Lawrence_2007_HGP, Lawrence_2006, Urtasun_2007}.
 
-The main contribution of this work is to propose a regularization approach for the latent SGP of \citep{Hensman_2013}, balancing the distribution of inducing inputs and latent inputs, and leading to better model prediction. Theoretically we justify the use of this regularization term by proving that performing variational inference (VI) on a GPLVM with this regularization term is equivalent to performing VI on a related empirical Bayes model with a prior on its inducing inputs. Moreover, we extend the categorical latent Gaussian process \citep{Gal_2015} to model categorical time series by incorporating a dynamical prior. We illustrate that our regularization is particularly important for this dynamic model.
+The main contribution of this work is to propose a regularization approach for the latent SGP of \citep{Hensman_2013}, balancing the distribution of inducing inputs and latent inputs, and leading to a better model prediction. Theoretically we justify the use of this regularization term by proving that performing variational inference (VI) on a GPLVM with this regularization term is equivalent to performing VI on a related empirical Bayes model with a prior on its inducing inputs. Moreover, we extend the categorical latent Gaussian process \citep{Gal_2015} to model categorical time series by incorporating a dynamical prior. We illustrate that our regularization is particularly important for this dynamic model.
 
-The rest of this paper is organized as follows. In Section \ref{sec:SGP} we show that the distribution of inducing inputs in a SGP is important for model prediction. We propose a regularization approach for latent SGPs and justify it through a related empirical Bayesian model in Section \ref{sec:R}. In Section \ref{sec:TCLGP}, we define the temporal categorical latent Gaussian process (TCLGP) including its variational lower bound, predictive density and algorithm for inference of latent variables. Section \ref{sec:E} shows the importance of regularization in GPLVMs for high dimensional complicated data sets such as the Anuran Call data set and applies TCLGP with regularization on both a synthetic dataset and a real data set of stock indices and demonstrates the ability and necessity of regularization for a latent SGP. Finally, we summarize our work and discuss its implications in Section \ref{sec:C}.
+The rest of this paper is organized as follows. In Section \ref{sec:SGP}, we show that the distribution of inducing inputs in a SGP is important for model prediction. We propose a regularization approach for latent SGPs and justify it through a related empirical Bayesian model in Section \ref{sec:R}. In Section \ref{sec:TCLGP}, we define the temporal categorical latent Gaussian process (TCLGP) including its variational lower bound, predictive density and algorithm for inference of latent variables. Section \ref{sec:E} shows the importance of regularization in GPLVMs for high dimensional complicated data sets such as the Anuran Call data set and applies TCLGP with regularization on both a synthetic dataset and a real data set of stock indices and demonstrates the ability and necessity of regularization for a latent SGP. Finally, we summarize our work and discuss its implications in Section \ref{sec:C}.
 
 
 \section{Sparse Gaussian Process} \label{sec:SGP}
@@ -148,7 +148,7 @@ Then the evidence lower bound (ELBO) is
 \begin{eqnarray}
 \mathrm{ELBO} = \sum_{d = 1}^{D}E_{q(F, U, X)}p(\bm y_d|\bm f_d) - \mathrm{KL}(q(U)||p(U)) - \mathrm{KL}(q(X)||p(X)) \,.
 \end{eqnarray}	
-\cite{Titsias_2010} derives the variational bound by marginalizing the optimal $q(U)$ based on the SGPR in \cite{Titsias_2009}, while \cite{Hensman_2013} derives that by maximizing both parameterized $q(U)$ and $q(X)$ based on a SVGP. In the reminder of this paper, we discuss the regularization based on a SVGP, due to its computational merit. 
+\cite{Titsias_2010} derives the variational bound by marginalizing the optimal $q(U)$ based on the SGPR in \cite{Titsias_2009}, while \cite{Hensman_2013} derives that by maximizing both parameterized $q(U)$ and $q(X)$ based on a SVGP. In the remainder of this paper, we discuss the regularization based on a SVGP, due to its computational merit. 
 
 For some larger and more complicated datasets, stochastic variational inference may fail to capture the distribution of latent inputs. We provide an example in Section~\ref{sec:Anuran}. To address this concern, we next propose an innovative regularization approach.
 
@@ -168,7 +168,7 @@ We define the regularization term $R$ by the Kullback-Leibler divergence between
 R = \mathrm{KL}(q_Z||q_X)\,.
 \end{eqnarray}
 
-In \ref{MELBO}, $\lambda$ can be chosen by cross validation or be set as the number of inducing points as a rule of thumb. As $\lambda = M$, we justify that performing VI on the GPLVM with regularization is equivalent to performing VI on a related empirical Bayes model with a prior on inducing inputs in Section~\ref{sec:rt}.
+In (\ref{MELBO}), $\lambda$ can be chosen by cross validation or be set as the number of inducing points as a rule of thumb. As $\lambda = M$, we justify that performing VI on the GPLVM with regularization is equivalent to performing VI on a related empirical Bayes model with a prior on inducing inputs in Section~\ref{sec:rt}.
 
 \subsection{Regularization Theory} \label{sec:rt}
 This section discusses the underlying relationship between regularization in GPLVM and an empirical Bayesian model. First, we display a related empirical Bayesian model with a prior on its inducing inputs $Z$ and derive its variational lower bound. Then we illustrate that maximizing the MELBO is equivalent to maximizing the variational lower bound in the empirical Bayesian model.
@@ -183,7 +183,7 @@ where $\hat{\bm \mu}_X$, $\hat{\Sigma}_X$ are mean and covariance matrix of $\bm
 \log p(Y) & \geq & \mathrm{E}_{q(F, U, X, Z)}\log p(Y|F) - \mathrm{KL}(q(Z)||p(Z)) - \mathrm{KL}(q(X)||p(X)) - \mathrm{KL}(q(U)||p(U)) \nonumber
 \end{eqnarray}
 
-We define $\hat{\bm \mu}_{\bm\nu}$ and $\hat{\bm\Sigma}_{\bm\nu}$ as the mean and covariance matrix of $\{\bm \nu_m\}$ and define a distribution family for $q(Z)$ such that $\Upsilon_{m} = \epsilon I$ for $m = 1,\ldots, M$. We assume the covariance of $\{\bm \nu_m\}$ is finite, which means $|\hat{\Sigma}_{\bm \nu}| < K$. Then we have following three lemmas and one theorem. The proofs are provided in the supplementary materials.
+We define $\hat{\bm \mu}_{\bm\nu}$ and $\hat{\bm\Sigma}_{\bm\nu}$ as the mean and covariance matrix of $\{\bm \nu_m\}$ and define a distribution family for $q(Z)$ such that $\Upsilon_{m} = \epsilon I$ for $m = 1,\ldots, M$. We assume the covariance of $\{\bm \nu_m\}$ is finite, which means $|\hat{\Sigma}_{\bm \nu}| < K$. Then we have following three lemmas and one theorem. The proofs are provided in the appendix.
 
 \begin{lemma}
 	When $q(\bm z_m) = \mathcal{N}(\bm \nu_m, \epsilon I)$, as $\epsilon \rightarrow 0$, $\bm z_m \stackrel{p}{\rightarrow} \nu_m$.
@@ -225,7 +225,7 @@ where the variational distributions of $U$ and $X$ are constructed using indepen
 q(U) & = & \prod_{d = 1}^{D}\prod_{k = 1}^{K}\mathcal{N}(\bm u_{dk}| \bm m_{dk}, S_d)\,, \nonumber \\
 q(X) & = & \prod_{n = 1}^{N}\prod_{q = 1}^{Q}\prod_{t = 1}^{T} \mathcal{N}(x_{nqt}| \mu_{nqt}, \sigma_{nqt}^2)\,. \nonumber
 \end{eqnarray}
-Since there is no closed form for the expectation \citep{Gal_2015}, we approximate the integration using Monte Carlo integration. For a large data set, we propose a stochastic variational inference algorithm with batch learning, with implementation details in Appendix~\ref{sec: scia} in the supplementary material.
+Since there is no closed form for the expectation \citep{Gal_2015}, we approximate the integration using Monte Carlo integration. For a large data set, we propose a stochastic variational inference algorithm with batch learning, with implementation details in Appendix in the supplementary material.
 
 \subsection{Prediction}
 The TCLGP model has hyper-parameters $\bm\theta, \bm\phi, Z$ and variational parameters $\bm \mu, \bm \sigma^2, \bm m, \bm S$. After model training, we get all estimates $\hat{\varTheta} = (\hat{\bm \theta}, \hat{\bm \phi}, \hat{Z}, \hat{\bm \mu}, \hat{\bm \sigma}, \hat{\bm m}, \hat{\bm S})$. We estimate the latent inputs $X$ and the inducing variables $U$ using their corresponding variational mean. Then given a new time stamp $t^*$ for any individual $n$, we can estimate the corresponding latent input given $\hat{X}$ as 
@@ -241,7 +241,7 @@ We illustrate our regularization on three datasets. First, we show that regulari
 \subsection{Anuran Calls Example} \label{sec:Anuran}
 GPLVM is a powerful dimensionality reduction approach \citep{Lawrence_2003, Lawrence_2007} and it is a base model for many sophisticated models \citep{Lawrence_2007_HGP, Urtasun_2007, Damianou_2016}. Thus inference for a GPLVM is important, but when dealing with complicated data, inference can be intractable due to the non-convex optimization problem. Here we show that regularization improves inference on complicated datasets such as the Anuran Call data set. This data set is available from the UCI repository at \url{https://archive.ics.uci.edu/ml/datasets/Anuran+Calls+(MFCCs)}, where there are $7195$ instances, and each instance has $22$ attributes and belongs to one of eight Genus types. We model all instances using GPLVM and perform inference with regularization. Specifically, we set the latent dimension $Q = 5$ and use $M = 20$ inducing points in the latent SVGP model. We choose independent standard Gaussian distributions as the prior distributions of the inducing points and use the PCA approach for initialization of the inducing inputs.
 
-Under different regularization weights $\lambda$, the latent means are displayed in Figure~\ref{fig:ANURAN} using the two most informative dimensions in the automatic relevance determination (ARD) kernel. It suggests that as $\lambda$ increase, inducing inputs are going to better capture latent inputs. When $\lambda$ increase large enough, the scale inducing inputs become invariant as shown for $\lambda = 10^3$ and $\lambda^7$. After enough iterations, both ELBO and MEBLO values for different $\lambda$s are shown in Figure~\ref{fig:ANURAN}. It shows that initially ELBO increases and model fit become better as $\lambda$ increase due to suitable regularization. But when $\lambda$ goes too large, ELBO decreases and model fit becomes worse. This is because MELBO emphasizes too much on the balance of inducing inputs and latent inputs and ignore likelihood information in ELBO. Overall, it suggests that for complicated data such as the Anuran Calls data set, suitable regularization contributes to better optimization and better model fit.
+Under different regularization weights $\lambda$, the latent means are displayed in Figure~\ref{fig:ANURAN} using the two most informative dimensions in the automatic relevance determination (ARD) kernel. As $\lambda$ increases, inducing inputs better capture latent inputs, until a best fit occurs around $\lambda = 10^3$. ELBO and MEBLO values for different $\lambda$s are shown in Figure~\ref{fig:ANURAN}. When $\lambda$ gets too large, the ELBO decreases and model fit becomes worse, because MELBO over emphasizes the balance of inducing inputs and latent inputs and ignores the likelihood information in the ELBO. Overall, it suggests that for complicated data such as the Anuran Calls data set, suitable regularization contributes to better optimization and better model fit.
 
 \begin{figure}[ht!]
 	\centering
@@ -249,14 +249,14 @@ Under different regularization weights $\lambda$, the latent means are displayed
 	\includegraphics[width=0.24\linewidth]{pic/RVBGPLVM_LAM1000}
     \includegraphics[width=0.24\linewidth]{pic/RVBGPLVM_LAM10000000}
     \includegraphics[width=0.24\linewidth]{pic/Anuran_Model_Fitting}
-	\caption{Latent means of GPLVM for Anuran Call data set. Left panel refers to no regularization and the other three have regularization with different weights $\lambda = 10^3, 10^7$. Different colors denote different genus types and crosses denote inducing inputs.}
+	\caption{Latent means of GPLVM for Anuran Call data set. Left panel refers to no regularization and the other three have regularization with different weights $\lambda = 10^3, 10^7$. Different colors denote different genus types and crosses denote inducing inputs. The rightmost plot shows the ELBO and MELBO for different weights $\lambda$.}
 	\label{fig:ANURAN}
 \end{figure}
  
 \subsection{Synthetic Time Series}
-Previous experiments have already shown regularization is useful in optimization when dealing with high dimensional data. Here, we show that regularization is also crucial for model prediction, even when dealing with low dimensional data in a TCLGP model. We also let latent dimensional size $Q$ be greater than data dimensional size to make model more flexible.
+Previous experiments have already shown regularization is useful in optimization when dealing with high dimensional data. Here, we show that regularization is also crucial for model prediction, even when dealing with low dimensional data in a TCLGP model. 
  
-In this section, we propose a simple Markov model to generate categorical time-series. Suppose we have categorical data with two dimensions, in which the first dimension has two levels and the second dimension has three levels. Totally, we have six observable categories. The two dimensions are modeled independently. We propose transition matrices in the two dimensions as $\begin{bmatrix}
+In this section, we propose a simple Markov model to generate categorical time-series. Suppose we have categorical data with two dimensions, in which the first dimension has two levels and the second dimension has three levels, giving six observable categories. We propose transition matrices in the two dimensions as $\begin{bmatrix}
 0.9 & 0.1\\
 0.1 & 0.9
 \end{bmatrix}$, 
@@ -264,13 +264,11 @@ and$ \begin{bmatrix}
 0.7, & 0.2 & 0.1 \\
 0.1 & 0.8 & 0.1\\
 0.1 & 0.2 & 0.7
-\end{bmatrix}$ respectively. We simulate initial levels uniformly and then generate time series of size $10$ from the simple Markov model and set time stamps evenly distributed over an unit interval. 
+\end{bmatrix}$ respectively, modeling each dimension independently. We simulate initial levels uniformly and then generate time series of size $10$ from the simple Markov model and set time stamps evenly distributed over a unit interval. 
+For each time series, we take the first 9 data points for training and 
+take the last data point for testing. We train our model using ARD kernels for all GPs, with and without regularization. We set $M = 20$ inducing points and take latent dimension size $Q = 5$. We let $Q$ be greater than the data dimension to make model more flexible for this complicated situation. We initialize the inducing inputs with independent standard normal distributions and initialize the latent input mean with zeros. After training, the latent variables of the training data are displayed in Figure~\ref{fig:SIM} using the two most informative dimensions based on ARD kernels. Specifically, for each dimension, we select the two most informative dimensions with respect to the two smallest length-scale values in $\bm\theta_d$. This illustrates that the inducing inputs have poor coverage for the latent inputs without regularization, and coverage improves as $\lambda$ increases.
 
-For each time series, we take first 9 data points for training and 
-take the last data point for testing. We train our model using ARD kernels for all GPs, with and without regularization. We set $M = 20$ inducing points and take latent dimension size $Q = 5$. We initialize the inducing inputs with independent standard normal distributions and initialize the latent input mean with zeros. After training, the latent variables of the training data are displayed in Figure~\ref{fig:SIM} using the two most informative dimensions based on ARD kernels. Specifically, for each dimensional, we select the two most informative dimensions with respect to the two smallest length-scale values in $\bm\theta_d$. This illustrates that the inducing inputs have bad coverage for the latent inputs without regularization. As $\lambda$ increases, the coverage becomes better because of more emphasis on the balance of inducing inputs. 
-
-We repeatedly run the whole experiment $100$ times with random initialization. ELBO, MELBO and predictive accuracy (PA) values are summarized by mean and standard deviation in Table~\ref{tab:SIM}. This table shows the ELBO decreases as $\lambda$ increases, because of more penalty on regularization term. In contrast with previous high dimensional data, ELBO can be easier to approach maximum without regularization in low dimensional data. Although ELBO achieves the maximum without regularization in Table~\ref{tab:SIM}, suitable regularization ($\lambda = 50$) of balance between inducing inputs and latent inputs is still crucial for model prediction, which contributes to higher predictive accuracy. It illustrates that regularization with suitable $\lambda$ contributes to better model prediction. 
-
+We repeatedly run the whole experiment $100$ times with random initialization. ELBO, MELBO and predictive accuracy (PA) values are summarized by their mean and standard deviation in Table~\ref{tab:SIM}. This table shows the ELBO decreases as $\lambda$ increases, because of more penalty on the regularization term. In contrast with previous high dimensional data, ELBO can more easily approach its maximum without regularization in low dimensional data. Although ELBO achieves the maximum without regularization in Table~\ref{tab:SIM}, suitable regularization ($\lambda = 50$) balancing between inducing inputs and latent inputs is still crucial for model prediction, which contributes to higher predictive accuracy. 
 
 \begin{figure}[ht!]
 	\centering
@@ -301,11 +299,11 @@ We repeatedly run the whole experiment $100$ times with random initialization. E
 	\end{tabular}
 	\caption{Evidence lower bound (ELBO), modified evidence lower bound (MELBO) and predictive accuracy (PA) of TCLGPs with and without regularization for synthetic categorical time series. Values are displayed by the mean (outside bracket) and standard deviation (inside bracket) of 100 repeated experiments with random initialization.}
 	\label{tab:SIM}
-\end{table}.
+\end{table}
+
 \subsection{Stock Index}
 In this section, we apply the TCLGP model with regularization to a real data set of stock indices.
-
-We focus on three indices, the SP500, the Nikkei225, and the DAX. Index records are from January 6, 1965 to December 5, 2012. We use the same data as in \cite{Joao_2014}, but we take monthly stock indices and treat each year as an independent time series. Letting $\bm y_{nd}$ be monthly stock values for the $n$th year's and the $d$th stock indices, we have $48$ annual time series, where each time series contains three stock indices for 12 months. We pre-process the data by evenly splitting the monthly return rates into five levels, via $20\%, 40\%, 60\%, 80\%$ quantiles.
+We focus on three indices, the SP500, the Nikkei225, and the DAX. Index records are from January 6, 1965 to December 5, 2012. We analyze the same data as in \cite{Joao_2014}, but we take monthly stock indices and treat each year as an independent time series. Letting $\bm y_{nd}$ be monthly stock values for the $n$th year's and the $d$th stock indices, we have $48$ annual time series, where each time series contains three stock indices for 12 months. We pre-process the data by evenly splitting the monthly return rates into five levels, via $20\%, 40\%, 60\%, 80\%$ quantiles.
 %, shown in Table~\ref{quan}
 %
 Levels 1-5 represent bear, slight bear, normal, slight bull and bull markets. For each time series we randomly select one month as the testing data and treat the remaining data as the training data.
@@ -330,10 +328,8 @@ Levels 1-5 represent bear, slight bear, normal, slight bull and bull markets. Fo
 \subsubsection{Hyper-parameter Analysis}
 In this dataset, the model is sensitive to the hyper-parameters of the GP of the latent function prior. We fixed the hyper-parameters and optimized the other model parameters with regularization. We take $M = 20$ and assume the same $\bm \phi$ for each dimension $q$. We try different settings of $\bm \phi$ and set $\lambda =20$ using  the rule of thumb. We evaluate model fit using the MELBO. Predictive performance is evaluated using training/testing predictive accuracy (TRPA/TPA) and training/testing mean absolute difference (TRMAD/TMAD), which are defined as follows:
 \begin{eqnarray}
-\mathrm{TRPA} & = & \frac{1}{N(T-1)}\sum_{n = 1}^{N}\sum_{t = 1}^{T-1}\bm 1(\bm y^{train}_{n\cdot t} = \hat{\bm y}^{train}_{n\cdot t}) \,, \nonumber \\
-\mathrm{TRMDA} & = & \frac{1}{ND(T-1)}\sum_{n = 1}^{N}\sum_{d = 1}^{D}\sum_{t=1}^{T-1}|y^{train}_{ndt}-\hat{y}^{train}_{ndt}| \,, \nonumber \\
-\mathrm{TPA} & = & \frac{1}{N}\sum_{n = 1}^{N}\bm 1(\bm y^{test}_{n\cdot} = \hat{\bm y}^{test}_{n\cdot}) \,, \nonumber \\
-\mathrm{TMDA} & = & \frac{1}{ND}\sum_{n = 1}^{N}\sum_{d = 1}^{D}|y^{test}_{nd}-\hat{y}^{test}_{nd}| \,. \nonumber
+\mathrm{TRPA} & = & \frac{1}{N(T-1)}\sum_{n = 1}^{N}\sum_{t = 1}^{T-1}\bm 1(\bm y^{train}_{n\cdot t} = \hat{\bm y}^{train}_{n\cdot t}) \,, \mathrm{TPA} = \frac{1}{N}\sum_{n = 1}^{N}\bm 1(\bm y^{test}_{n\cdot} = \hat{\bm y}^{test}_{n\cdot}) \,; \nonumber \\
+\mathrm{TRMDA} & = & \frac{1}{ND(T-1)}\sum_{n = 1}^{N}\sum_{d = 1}^{D}\sum_{t=1}^{T-1}|y^{train}_{ndt}-\hat{y}^{train}_{ndt}| \,, \mathrm{TMDA} = \frac{1}{ND}\sum_{n = 1}^{N}\sum_{d = 1}^{D}|y^{test}_{nd}-\hat{y}^{test}_{nd}| \,. \nonumber
 \end{eqnarray} 
 %
 Results can be found in Table~\ref{tab:STOCK}.
@@ -367,7 +363,7 @@ Table~\ref{tab:STOCK} shows some examples of hyper-parameter values and that wit
 
 
 \subsubsection{Latent Processes Visualization}
-Here we use the optimal model from the previous section. To visualize the latent process, we denote the predictive categories given a certain latent space $\bm x^*$ as $\bm y^* \in [0,\ldots,4]^3$. We let $\tilde{y}^* = \sum \bm y^* \in [0, \ldots, 12]$ to represent market status. The larger value represents that it is more likely to be a bull market. Then we plot a contour using $(\bm x^*, \tilde{y}^*)$ on the latent space shown in Figure~\ref{fig:stock}. On the surface, light colors indicate a bull market while dark colors indicate a bear market. Furthermore, we display predictive posterior latent processes as well as estimated latent traces for both Year 2008 and Year 2009 in Figure~\ref{fig:stock}. The estimated latent traces show that it always stays in darker areas in 2008 while it always stays in lighter areas in 2009. The result exactly matches the fact that a financial crisis happened in 2008 leading the US stock market to a bear market while the US economy returned to normal in 2009. Predictive sensitivity for all years is captured by the predictive posterior processes in the middle two columns in Figure~\ref{fig:stock}.
+Here we employ the optimal model from the previous section. To visualize the latent process, we denote the predictive categories given a certain latent space $\bm x^*$ as $\bm y^* \in [0,\ldots,4]^3$. We let $\tilde{y}^* = \sum \bm y^* \in [0, \ldots, 12]$ to represent market status. The larger value represents that it is more likely to be a bull market. Then we plot a contour using $(\bm x^*, \tilde{y}^*)$ on the latent space shown in Figure~\ref{fig:stock}. On the surface, light colors indicate a bull market while dark colors indicate a bear market. Furthermore, we display predictive posterior latent processes as well as estimated latent traces for both Year 2008 and Year 2009 in Figure~\ref{fig:stock}. The estimated latent traces show that it always stays in darker areas in 2008 while it always stays in lighter areas in 2009. The result exactly matches the fact that a financial crisis happened in 2008 leading the US stock market to a bear market while the US economy returned to normal in 2009. Predictive sensitivity for all years is captured by the predictive posterior processes in the middle two columns in Figure~\ref{fig:stock}.
 
 \begin{figure}[ht!]
 	\centering
@@ -400,62 +396,13 @@ Here we use the optimal model from the previous section. To visualize the latent
 \end{figure}
 
 \section{Conclusion} \label{sec:C}
-Regularization for a GPLVM is necessary when dealing with complicated high dimensional data, improving global optimization in model fitting. The use of regularization is also justified by proving that performing VI on a GPLVM with this regularization is equivalent to performing VI on a related empirical Bayes model. Without cross validation for the regularization weight $\lambda$, we give a rule of thumb for the selection of regularization by setting $\lambda = M$. We propose the temporal categorical latent Gaussian process model and illustrate that our regularization is particularly important in this latent dynamic model. Finally, we illustrate its abilities on the real dataset of stock indices.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Regularization for a GPLVM is necessary when dealing with complicated high dimensional data, improving global optimization in model fitting. The use of regularization is also justified by proving that performing VI on a GPLVM with this regularization is equivalent to performing VI on a related empirical Bayes model. Without cross validation for the regularization weight $\lambda$, we design a rule of thumb for the selection of regularization by setting $\lambda = M$. We propose the temporal categorical latent Gaussian process model and illustrate that our regularization is particularly important in this latent dynamic model. Finally, we exemplify its abilities on a real dataset of stock indices.
 
 \newpage
 \bibliographystyle{apalike}
 \bibliography{ref}
 
-\newpage
-\appendix
-\input{appendix}
+%\newpage
+%\appendix
+%\input{appendix}
 \end{document}

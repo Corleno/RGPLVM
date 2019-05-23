@@ -328,10 +328,8 @@ Levels 1-5 represent bear, slight bear, normal, slight bull and bull markets. Fo
 \subsubsection{Hyper-parameter Analysis}
 In this dataset, the model is sensitive to the hyper-parameters of the GP of the latent function prior. We fixed the hyper-parameters and optimized the other model parameters with regularization. We take $M = 20$ and assume the same $\bm \phi$ for each dimension $q$. We try different settings of $\bm \phi$ and set $\lambda =20$ using  the rule of thumb. We evaluate model fit using the MELBO. Predictive performance is evaluated using training/testing predictive accuracy (TRPA/TPA) and training/testing mean absolute difference (TRMAD/TMAD), which are defined as follows:
 \begin{eqnarray}
-\mathrm{TRPA} & = & \frac{1}{N(T-1)}\sum_{n = 1}^{N}\sum_{t = 1}^{T-1}\bm 1(\bm y^{train}_{n\cdot t} = \hat{\bm y}^{train}_{n\cdot t}) \,, \nonumber \\
-\mathrm{TRMDA} & = & \frac{1}{ND(T-1)}\sum_{n = 1}^{N}\sum_{d = 1}^{D}\sum_{t=1}^{T-1}|y^{train}_{ndt}-\hat{y}^{train}_{ndt}| \,, \nonumber \\
-\mathrm{TPA} & = & \frac{1}{N}\sum_{n = 1}^{N}\bm 1(\bm y^{test}_{n\cdot} = \hat{\bm y}^{test}_{n\cdot}) \,, \nonumber \\
-\mathrm{TMDA} & = & \frac{1}{ND}\sum_{n = 1}^{N}\sum_{d = 1}^{D}|y^{test}_{nd}-\hat{y}^{test}_{nd}| \,. \nonumber
+\mathrm{TRPA} & = & \frac{1}{N(T-1)}\sum_{n = 1}^{N}\sum_{t = 1}^{T-1}\bm 1(\bm y^{train}_{n\cdot t} = \hat{\bm y}^{train}_{n\cdot t}) \,, \mathrm{TPA} = \frac{1}{N}\sum_{n = 1}^{N}\bm 1(\bm y^{test}_{n\cdot} = \hat{\bm y}^{test}_{n\cdot}) \,; \nonumber \\
+\mathrm{TRMDA} & = & \frac{1}{ND(T-1)}\sum_{n = 1}^{N}\sum_{d = 1}^{D}\sum_{t=1}^{T-1}|y^{train}_{ndt}-\hat{y}^{train}_{ndt}| \,, \mathrm{TMDA} = \frac{1}{ND}\sum_{n = 1}^{N}\sum_{d = 1}^{D}|y^{test}_{nd}-\hat{y}^{test}_{nd}| \,. \nonumber
 \end{eqnarray} 
 %
 Results can be found in Table~\ref{tab:STOCK}.
@@ -399,55 +397,6 @@ Here we use the optimal model from the previous section. To visualize the latent
 
 \section{Conclusion} \label{sec:C}
 Regularization for a GPLVM is necessary when dealing with complicated high dimensional data, improving global optimization in model fitting. The use of regularization is also justified by proving that performing VI on a GPLVM with this regularization is equivalent to performing VI on a related empirical Bayes model. Without cross validation for the regularization weight $\lambda$, we give a rule of thumb for the selection of regularization by setting $\lambda = M$. We propose the temporal categorical latent Gaussian process model and illustrate that our regularization is particularly important in this latent dynamic model. Finally, we illustrate its abilities on the real dataset of stock indices.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 \newpage
 \bibliographystyle{apalike}
