@@ -102,25 +102,24 @@ In this section, we show the importance of inducing inputs for a SGP. From a var
 y & \sim & \mathcal{N}(y|f, 0.1^2) \nonumber \\
 f & = & \sin(2x) + 0.2\cos(22x) \nonumber \,.
 \end{eqnarray} 
-We take $100$ evenly spaced inputs on $(0,1)$ as test inputs and generate corresponding outputs as their true test outputs. We use a linear combination of a Matern kernel and a linear kernel as the covariance function and take different settings of inducing points, in which inducing points are evenly distributed on an interval centered at $0.5$ and of possible lengths $0.5$, $1$, $2$, or $5$. We fix those inducing points in optimization, and the resulting predictive posterior processes are shown in Figure\ref{fig:SGP}. The likelihood and root mean square error are summarized in Table~\ref{tab:SGP}, illustrating that the model has best predictive performance when the distribution of the inducing inputs captures the distribution of actual inputs.
+We take $100$ evenly spaced inputs on $(0,1)$ as test inputs and generate corresponding outputs as their true test outputs. We use a linear combination of a Matern kernel and a linear kernel as the covariance function and take different settings of inducing points, in which inducing points are evenly distributed on an interval centered at $0.5$ and of possible lengths $0.5$, $1$ or $2$. We fix those inducing points in optimization, and the resulting predictive posterior processes are shown in Figure\ref{fig:SGP}. The likelihood and root mean square error are summarized in Table~\ref{tab:SGP}, illustrating that the model has best predictive performance when the distribution of the inducing inputs captures the distribution of actual inputs.
 \begin{figure}[ht!]
 	\centering
-	\includegraphics[width = 0.24\linewidth]{pic/1D_sim_SVGP_Fixed_Z0}
-	\includegraphics[width = 0.24\linewidth]{pic/1D_sim_SVGP_Fixed_Z1}
-	\includegraphics[width = 0.24\linewidth]{pic/1D_sim_SVGP_Fixed_Z2}
-	\includegraphics[width = 0.24\linewidth]{pic/1D_sim_SVGP_Fixed_Z5}
+	\includegraphics[width = 0.32\linewidth]{pic/1D_sim_SVGP_Fixed_Z0}
+	\includegraphics[width = 0.32\linewidth]{pic/1D_sim_SVGP_Fixed_Z1}
+	\includegraphics[width = 0.32\linewidth]{pic/1D_sim_SVGP_Fixed_Z2}
 	\caption{Stochastic variational Gaussian process on 1D synthetic data with different setting inducing inputs.}
 	\label{fig:SGP}
 \end{figure} 
 \begin{table}[ht!]
 	\centering
-	\begin{tabular}{|c|c|c|c|c|}
+	\begin{tabular}{|c|c|c|c|}
 		\hline
-		Length & 0.5 & 1 & 2 & 5 \\
+		Length & 0.5 & 1 & 2 \\
 		\hline
-		$\ell$ & 0.5226 & 1.7514 & 0.5400 & 0.4976 \\
+		$\ell$ & 0.5226 & 1.7514 & 0.5400  \\
 		\hline 
-		RMSE & 0.1424 & 0.0383 & 0.1406 & 0.1463 \\
+		RMSE & 0.1424 & 0.0383 & 0.1406  \\
 		\hline
 	\end{tabular}
     \caption{Log likelihood ($\ell$) and root mean square error (RMSE) for model prediction on 1-D synthetic data with different setting of fixed inducing points.}
@@ -242,19 +241,21 @@ We illustrate our regularization on three datasets. First, we show that regulari
 \subsection{Anuran Calls Example} \label{sec:Anuran}
 GPLVM is a powerful dimensionality reduction approach \citep{Lawrence_2003, Lawrence_2007} and it is a base model for many sophisticated models \citep{Lawrence_2007_HGP, Urtasun_2007, Damianou_2016}. Thus inference for a GPLVM is important, but when dealing with complicated data, inference can be intractable due to the non-convex optimization problem. Here we show that regularization improves inference on complicated datasets such as the Anuran Call data set. This data set is available from the UCI repository at \url{https://archive.ics.uci.edu/ml/datasets/Anuran+Calls+(MFCCs)}, where there are $7195$ instances, and each instance has $22$ attributes and belongs to one of eight Genus types. We model all instances using GPLVM and perform inference with regularization. Specifically, we set the latent dimension $Q = 5$ and use $M = 20$ inducing points in the latent SVGP model. We choose independent standard Gaussian distributions as the prior distributions of the inducing points and use the PCA approach for initialization of the inducing inputs.
 
-Under different regularization weights $\lambda$, the latent means are displayed in Figure~\ref{fig:ANURAN} using the two most informative dimensions in the automatic relevance determination (ARD) kernel. After enough iterations, their MELBOs are 1.66e+5, 1.64e+5, 1.66e+5, 1.76e+5 for SVI in GPLVM with $\lambda = 0 ,20, 50, 100$, respectively. Even with penalty on $\lambda = 100$, the MELBO is larger than the others. This suggests that for complicated data such as the Anuran Calls data set, regularization contributes to better optimization and better model fitting.
+Under different regularization weights $\lambda$, the latent means are displayed in Figure~\ref{fig:ANURAN} using the two most informative dimensions in the automatic relevance determination (ARD) kernel. It suggests that as $\lambda$ increase, inducing inputs are going to better capture latent inputs. When $\lambda$ increase large enough, the scale inducing inputs become invariant as shown for $\lambda = 10^3$ and $\lambda^7$. After enough iterations, both ELBO and MEBLO values for different $\lambda$s are shown in Figure~\ref{fig:ANURAN}. It shows that initially ELBO increases and model fit become better as $\lambda$ increase due to suitable regularization. But when $\lambda$ goes too large, ELBO decreases and model fit become worse. This is because MELBO emphasizes too much on the balance of inducing inputs and latent inputs and ignore likelihood information in ELBO. Overall, it suggests that for complicated data such as the Anuran Calls data set, regularization contributes to better optimization and better model fit.
 
 \begin{figure}[ht!]
 	\centering
 	\includegraphics[width=0.24\linewidth]{pic/VBGPLVM}
-	\includegraphics[width=0.24\linewidth]{pic/RVBGPLVM_LAM20}
-	\includegraphics[width=0.24\linewidth]{pic/RVBGPLVM_LAM50}
-	\includegraphics[width=0.24\linewidth]{pic/RVBGPLVM_LAM100}
-	\caption{Latent means of GPLVM for Anuran Call data set. Left panel refers to no regularization and the other three have regularization with different weights $\lambda = 20, 50, 100$. Different colors denote different genus types and crosses denote inducing inputs. The number of inducing inputs in the domain $[-20,20]\times[-20,20]$ from left to right are $13, 17, 18, 20$.}
+	\includegraphics[width=0.24\linewidth]{pic/RVBGPLVM_LAM1000}
+    \includegraphics[width=0.24\linewidth]{pic/RVBGPLVM_LAM10000000}
+    \includegraphics[width=0.24\linewidth]{pic/Anuran_Model_Fitting}
+	\caption{Latent means of GPLVM for Anuran Call data set. Left panel refers to no regularization and the other three have regularization with different weights $\lambda = 10^3, 10^7$. Different colors denote different genus types and crosses denote inducing inputs.}
 	\label{fig:ANURAN}
 \end{figure}
  
 \subsection{Synthetic Time Series}
+Previous experiments have already shown regularization is useful in optimization when dealing with high dimensional data. Here, we show that regularization is also crucial for model prediction, even when dealing with low dimensional data in a TCLGP model. We also let latent dimensional size $Q$ be greater than data dimensional size to make model more flexible.
+ 
 In this section, we propose a simple Markov model to generate categorical time-series. Suppose we have categorical data with two dimensions, in which the first dimension has two levels and the second dimension has three levels. Totally, we have six observable categories. The two dimensions are modeled independently. We propose transition matrices in the two dimensions as $\begin{bmatrix}
 0.9 & 0.1\\
 0.1 & 0.9
@@ -266,7 +267,9 @@ and$ \begin{bmatrix}
 \end{bmatrix}$ respectively. We simulate initial levels uniformly and then generate time series of size $10$ from the simple Markov model and set time stamps evenly distributed over an unit interval. 
 
 For each time series, we take first 9 data points for training and 
-take the last data point for testing. We train our model using ARD kernels for all GPs, with and without regularization. We set $M = 20$ inducing points and take latent dimension size $Q = 5$. We initialize the inducing inputs with independent standard normal distributions and initialize the latent input mean with zeros. After training, the latent variables of the training data are displayed in Figure~\ref{fig:SIM} using the two most informative dimensions based on ARD kernels. Specifically, for each dimensional, we select the two most informative dimensions with respect to the two smallest length-scale values in $\bm\theta_d$. ELBO and MELBO values are summarized in Table~\ref{tab:SIM}. This illustrates that the inducing inputs have bad coverage for the latent inputs without regularization. As $\lambda$ increases, the coverage becomes better but its evidence lower bound (ELBO) decreases. The ELBO with $\lambda = 100$ is significantly smaller than ELBO with $\lambda = 20$ or $50$. Furthermore, we repeatedly run the whole experiment $100$ times with random initialization. The prediction accuracy of GPLVM with and without regularization is $74.34\%(4.13\%)$, $75.79\%(4.34\%)$, $77.01\%(4.61\%)$ and $75.11\%(5.19\%)$ for $\lambda = 0, 20$, $50$ and $100$ respectively, where values in the bracket represents the standard deviation. It illustrates that regularization with suitable $\lambda$ contributes to better model prediction. 
+take the last data point for testing. We train our model using ARD kernels for all GPs, with and without regularization. We set $M = 20$ inducing points and take latent dimension size $Q = 5$. We initialize the inducing inputs with independent standard normal distributions and initialize the latent input mean with zeros. After training, the latent variables of the training data are displayed in Figure~\ref{fig:SIM} using the two most informative dimensions based on ARD kernels. Specifically, for each dimensional, we select the two most informative dimensions with respect to the two smallest length-scale values in $\bm\theta_d$. This illustrates that the inducing inputs have bad coverage for the latent inputs without regularization. As $\lambda$ increases, the coverage becomes better because of more emphasis on the balance of inducing inputs.
+
+We repeatedly run the whole experiment $100$ times with random initialization. ELBO, MELBO and predictive accuracy (PA) values are summarized by mean and standard deviation in Table~\ref{tab:SIM}.  Table shows the evidence lower bound (ELBO) decreases as $\lambda$ increases, because of more penalty on regularization term. In contrast with previous high dimensional data, ELBO can be easier to approach maximum without regularization in low dimensional data. However, when we consider suitable regularization ($\lambda = 50$) of balance between inducing inputs and latent inputs, model prediction achieve higher predictive accuracy. It illustrates that regularization with suitable $\lambda$ contributes to better model prediction. 
 
 
 \begin{figure}[ht!]
@@ -289,15 +292,16 @@ take the last data point for testing. We train our model using ARD kernels for a
 		\hline
 		$\lambda$ & 0 & 20 & 50 & 100 \\
 		\hline
-		ELBO & -1547.31  & -1596.53 & -1594.00 & -1620.63 \\
+		ELBO & \textbf{-1543.97}(24.29)  & -1593.23(18.46) & -1606.25(19.85) & -1618.57(23.81) \\
 		\hline
-		MELBO & -1547.31 & -1607.08 & -1603.44 & -1629.49 \\
+		MELBO & -1543.97(24.29) & -1604.31(18.65) & 1616.36(20.06) & -1627.14(23.98) \\
+		\hline
+		PA & 74.67\%(4.86\%) & 75.69\%(4.65\%) & \textbf{76.66\%}(4.33\%) & 75.63\%(5.01\%)\\
 		\hline
 	\end{tabular}
-	\caption{Evidence lower bound (ELBO) and modified evidence lower bound (MELBO) of GPLVMs with and without regularization for synthetic categorical time series.}
+	\caption{Evidence lower bound (ELBO), modified evidence lower bound (MELBO) and predictive accuracy (PA) of TCLGPs with and without regularization for synthetic categorical time series. Values are displayed by the mean (outside bracket) and standard deviation (inside bracket) of 100 repeated experiments with random initialization.}
 	\label{tab:SIM}
-\end{table}
-
+\end{table}.
 \subsection{Stock Index}
 In this section, we apply the TCLGP model with regularization to a real data set of stock indices.
 
