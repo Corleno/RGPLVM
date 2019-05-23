@@ -1,0 +1,157 @@
+\begin{thebibliography}{}
+
+\bibitem[Banerjee et~al., 2008]{Banerjee_2008}
+Banerjee, S., Gelfand, A.~E., Finley, A.~O., and Sang, H. (2008).
+\newblock Gaussian predictive process models for large spatial data sets.
+
+\bibitem[Bernhard et~al., 1998]{Scholkopf_1998}
+Bernhard, S., Alexander, S., and Klaus-Robert, M. (1998).
+\newblock Kernel principle component analysis.
+\newblock {\em Advances in Kernel Methods - Support Vector Learning}, pages
+  327--352.
+
+\bibitem[{Bowman} et~al., 2015]{Bowman_2015}
+{Bowman}, S.~R., {Vilnis}, L., {Vinyals}, O., {Dai}, A.~M., {Jozefowicz}, R.,
+  and {Bengio}, S. (2015).
+\newblock {Generating Sentences from a Continuous Space}.
+\newblock {\em ArXiv e-prints}.
+
+\bibitem[Damianou et~al., 2016]{Damianou_2016}
+Damianou, A.~C., Titsias, M.~K., and Lawrence, N.~D. (2016).
+\newblock Variational inference for latent variables and uncertain inputs in
+  gaussian processes.
+\newblock {\em Journal of Machine Learning Research}, 17(42):1--62.
+
+\bibitem[Ek et~al., 2007]{Lawrence_2007}
+Ek, C.~H., Torr, P. H.~S., and Lawrence, N.~D. (2007).
+\newblock Gaussian process latent variable models for human pose estimation.
+\newblock In {\em MLMI}.
+
+\bibitem[Finley et~al., 2009]{Finley_2009}
+Finley, A.~S., Huiyan~Banerjee, S., and Gelfand, A. (2009).
+\newblock Improving the performance of predictive process modeling for large
+  datasets.
+\newblock {\em Computational statistics and data analysis}.
+
+\bibitem[{Gal} et~al., 2015]{Gal_2015}
+{Gal}, Y., {Chen}, Y., and {Ghahramani}, Z. (2015).
+\newblock {Latent Gaussian Processes for Distribution Estimation of
+  Multivariate Categorical Data}.
+\newblock {\em ArXiv e-prints}.
+
+\bibitem[Guhaniyogi et~al., 2011]{Raj_2011}
+Guhaniyogi, R., Finley, A., Banerjee, S., and Gelfand, A. (2011).
+\newblock Adaptive gaussian predictive process models for large spatial
+  datasets.
+\newblock {\em Environmetrics}.
+
+\bibitem[{Haining}, 1993]{Cressie_1993}
+{Haining}, R. (1993).
+\newblock Statistics for spatial data.
+\newblock {\em Computers and Geosciences}, 19:615--616.
+
+\bibitem[{Hensman} et~al., 2013]{Hensman_2013}
+{Hensman}, J., {Fusi}, N., and {Lawrence}, N.~D. (2013).
+\newblock {Gaussian Processes for Big Data}.
+\newblock {\em ArXiv e-prints}.
+
+\bibitem[{Hensman} et~al., 2012]{Hensman_2012}
+{Hensman}, J., {Rattray}, M., and {Lawrence}, N.~D. (2012).
+\newblock {Fast Variational Inference in the Conjugate Exponential Family}.
+\newblock {\em ArXiv e-prints}.
+
+\bibitem[L. and Opper, 2002]{Csato_2002}
+L., C. and Opper, M. (2002).
+\newblock Sparse online gaussian processes.
+\newblock {\em Neural Computation}, pages 641--669.
+
+\bibitem[Lawrence, 2005]{Lawrence_2005}
+Lawrence, N. (2005).
+\newblock Probabilistic non-linear principal component analysis with gaussian
+  process latent variable models.
+\newblock {\em J. Mach. Learn. Res.}, 6:1783--1816.
+
+\bibitem[Lawrence, 2003]{Lawrence_2003}
+Lawrence, N.~D. (2003).
+\newblock Gaussian process latent variable models for visualisation of high
+  dimensional data.
+\newblock In {\em NIPS}.
+
+\bibitem[Lawrence and Moore, 2007]{Lawrence_2007_HGP}
+Lawrence, N.~D. and Moore, A.~J. (2007).
+\newblock Hierarchical gaussian process latent variable models.
+\newblock In {\em Proceedings of the 24th International Conference on Machine
+  Learning}, ICML '07, pages 481--488, New York, NY, USA. ACM.
+
+\bibitem[Lawrence and Qui\~{n}onero Candela, 2006]{Lawrence_2006}
+Lawrence, N.~D. and Qui\~{n}onero Candela, J. (2006).
+\newblock Local distance preservation in the gp-lvm through back constraints.
+\newblock In {\em Proceedings of the 23rd International Conference on Machine
+  Learning}, ICML '06, pages 513--520, New York, NY, USA. ACM.
+
+\bibitem[Mardia et~al., 1979]{Mardia_1979}
+Mardia, K.~V., Kent, J.~T., and Bibby, J.~M. (1979).
+\newblock Multivariate analysis.
+
+\bibitem[Nicolau, 2014]{Joao_2014}
+Nicolau, J. (2014).
+\newblock A new model for multivariate markov chains.
+\newblock {\em Scandinavian Journal of Statistics}, 41(4):1124--1135.
+
+\bibitem[Rasmussen and Kuss, 2004]{Rasmussen_2004}
+Rasmussen, C. and Kuss, M. (2004).
+\newblock Gaussian processes in reinforcement learning.
+\newblock In {\em Advances in Neural Information Processing Systems 16}, pages
+  751--759, Cambridge, MA, USA. Max-Planck-Gesellschaft, MIT Press.
+
+\bibitem[Rasmussen and Williams, 2005]{Rasmussen_2005}
+Rasmussen, C.~E. and Williams, C. K.~I. (2005).
+\newblock {\em Gaussian Processes for Machine Learning (Adaptive Computation
+  and Machine Learning)}.
+\newblock The MIT Press.
+
+\bibitem[Seeger, 2003]{Seeger_2003}
+Seeger, M. (2003).
+\newblock Pac-bayesian generalisation error bounds for gaussian process
+  classification.
+\newblock {\em J. Mach. Learn. Res.}, 3:233--269.
+
+\bibitem[Snelson and Ghahramani, 2006]{Snelson_2006}
+Snelson, E. and Ghahramani, Z. (2006).
+\newblock Sparse gaussian processes using pseudo-inputs.
+\newblock In Weiss, Y., Sch\"{o}lkopf, B., and Platt, J.~C., editors, {\em
+  Advances in Neural Information Processing Systems 18}, pages 1257--1264. MIT
+  Press.
+
+\bibitem[Snelson and Ghahramani, 2007]{Snelson_2007}
+Snelson, E. and Ghahramani, Z. (2007).
+\newblock Local and global sparse gaussian process approximations.
+\newblock In Meila, M. and Shen, X., editors, {\em Proceedings of the Eleventh
+  International Conference on Artificial Intelligence and Statistics}, volume~2
+  of {\em Proceedings of Machine Learning Research}, pages 524--531, San Juan,
+  Puerto Rico. PMLR.
+
+\bibitem[Titsias, 2009]{Titsias_2009}
+Titsias, M. (2009).
+\newblock Variational learning of inducing variables in sparse gaussian
+  processes.
+\newblock In van Dyk, D. and Welling, M., editors, {\em Proceedings of the
+  Twelth International Conference on Artificial Intelligence and Statistics},
+  volume~5 of {\em Proceedings of Machine Learning Research}, pages 567--574,
+  Hilton Clearwater Beach Resort, Clearwater Beach, Florida USA. PMLR.
+
+\bibitem[Titsias and Lawrence, 2010]{Titsias_2010}
+Titsias, M. and Lawrence, N.~D. (2010).
+\newblock Bayesian gaussian process latent variable model.
+\newblock In Teh, Y.~W. and Titterington, M., editors, {\em Proceedings of the
+  Thirteenth International Conference on Artificial Intelligence and
+  Statistics}, volume~9 of {\em Proceedings of Machine Learning Research},
+  pages 844--851, Chia Laguna Resort, Sardinia, Italy. PMLR.
+
+\bibitem[Urtasun and Darrell, 2007]{Urtasun_2007}
+Urtasun, R. and Darrell, T. (2007).
+\newblock Discriminative gaussian process latent variable model for
+  classification.
+\newblock In {\em ICML}.
+
+\end{thebibliography}
