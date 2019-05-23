@@ -79,11 +79,11 @@ The source code for re-running all the experiments detailed here and all data ar
 
 \section{Stochastic Variational Inference Algorithm}
 \label{sec: scia}
-This section displays a general stochastic variational inference algorithm for large datasets. In this framework, we set the number of training epochs $N_{train}$ and evenly divide the whole dataset into $N_{batch}$ clusters. Each cluster includes the observations $\bm Y_i$ and their corresponding time stamp data $\tilde{\bm T}_i$ and their corresponding hyper-parameters of embedding inputs, $\bm m_i$ for the mean and $\bm s_i$ for the standard deviation. In the context of the TCLGP, the model parameters include $\bm \theta, \bm Z, \bm \mu, \bm \Sigma$ and the model inputs include both observable data $\bm Y_i, \tilde{\bm T}_i$ and latent hyper-parameters $\bm m_i, \bm s_i$. Suppose the MELBO(g) is rewritten as
+This section displays a general stochastic variational inference algorithm for large datasets. In this framework, we set the number of training epochs $N_{train}$ and evenly divide the whole dataset into $N_{batch}$ clusters. Each cluster includes the observations $\bm Y_i$ and their corresponding time stamp data $B_i$ and their corresponding hyper-parameters of embedding inputs, $\bm m_i$ for the mean and $\bm s_i$ for the standard deviation. In the context of the TCLGP, the model parameters include $\bm \theta, \bm Z, \bm \mu, \bm \Sigma$ and the model inputs include both observable data $\bm Y_i, B_i$ and latent hyper-parameters $\bm m_i, \bm s_i$. Suppose the MELBO(g) is rewritten as
 \begin{eqnarray}
 \mathrm{MELBO(g)} & = & \mathrm{ELBO(g)} - \lambda\mathrm{R} \nonumber \\
 & = & gR_0 + R_1 - \lambda\mathrm{R}\,, \nonumber \\
-R_0 & = & -\mathrm{KL}(q(\bm X) || p(\bm X | \tilde{\bm T})) - \mathrm{KL}(q(\bm U) || p(\bm U)) \,, \nonumber \\
+R_0 & = & -\mathrm{KL}(q(\bm X) || p(\bm X | B)) - \mathrm{KL}(q(\bm U) || p(\bm U)) \,, \nonumber \\
 R_1 & = & \int q(\bm X) q(\bm  U) p(\bm F | \bm X, \bm U) \log\left(\sum_{n = 1}^{N}\sum_{d = 1}^{D}\sum_{t = 1}^{T} p(\bm y_{ndt} | \bm f_{ndt})\right)d\bm X \bm U \bm F \,, \nonumber
 \end{eqnarray}
 where $R_0$ and $R_1$ are the regularization term and the reconstruction term 
@@ -94,7 +94,7 @@ in the ELBO separately and $\mathrm{R}$ is a regularization term related to indu
 	Set $g = 0$\;
 	\For{$i = 1$ \KwTo $N_{train}$}{
 		\For{$j = 1$ \KwTo $N_{batch}$}{
-			Assign both observable data $\bm Y_i, \tilde{\bm T}_i$ and latent data $\bm m_i, \bm s_i$ to the TCLGP model\;
+			Assign both observable data $\bm Y_i, B_i$ and latent data $\bm m_i, \bm s_i$ to the TCLGP model\;
 			Update model parameters $\bm \theta, \bm Z, \bm \mu, \bm \Sigma$ and latent hyper-parameters $\bm m_i, \bm s_i$ through maximizing the MELBO(g) using a stochastic gradient descend method.\;
 			}
 		$g = \min(g + \Delta g, 1)$\;
